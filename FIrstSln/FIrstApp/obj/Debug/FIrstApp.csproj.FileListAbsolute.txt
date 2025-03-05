@@ -1,0 +1,7 @@
+C:\Users\PC\Desktop\A\FIrstSln\FIrstApp\bin\Debug\FIrstApp.exe.config
+C:\Users\PC\Desktop\A\FIrstSln\FIrstApp\bin\Debug\FIrstApp.exe
+C:\Users\PC\Desktop\A\FIrstSln\FIrstApp\bin\Debug\FIrstApp.pdb
+C:\Users\PC\Desktop\A\FIrstSln\FIrstApp\obj\Debug\FIrstApp.csproj.AssemblyReference.cache
+C:\Users\PC\Desktop\A\FIrstSln\FIrstApp\obj\Debug\FIrstApp.csproj.CoreCompileInputs.cache
+C:\Users\PC\Desktop\A\FIrstSln\FIrstApp\obj\Debug\FIrstApp.exe
+C:\Users\PC\Desktop\A\FIrstSln\FIrstApp\obj\Debug\FIrstApp.pdb
