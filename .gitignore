@@ -1,7 +1,7 @@
 .vs
 bin/
 obj/
-*.config
-*.csproj
-*.cache
-Properties/
+*.resx~
+*.tmp
+*.temp
+
