@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace week2Sln.Properties
+namespace Week02proj01_Practice.Properties
 {
 
 
