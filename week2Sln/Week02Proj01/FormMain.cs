@@ -140,5 +140,110 @@ namespace Week02Proj01
             long result3 = (long)(data1 + data2 + data3 + data4); // 정수 + 실수 = 실수
             lblResult.Text += result3.ToString();
         }
+
+        private void btnOutput07_Click(object sender, EventArgs e)
+        {
+            // 관계연산자 이용
+            bool result1 = tbxInput1.Text == tbxInput2.Text;
+            bool result2 = tbxInput2.Text == tbxInput3.Text;
+            bool result3 = tbxInput1.Text == tbxInput3.Text;
+
+            // 논리연산자 이용
+            if (result1 && result2 && result3) {
+                lblResult.Text = "모두 일치";
+            } else if (result1 || result2 || result3) {
+                lblResult.Text = "일치하는 데이터가 하나이상 있음";
+            } else {
+                lblResult.Text = "모두 불일치";
+            }
+        }
+
+        private void btnOutput08_Click(object sender, EventArgs e)
+        {
+            var data1 = int.Parse(tbxInput1.Text);
+            var data2 = int.Parse(tbxInput2.Text);
+
+            //string result; //지역변수 초기화 자동으로 되지않음.
+            string result; //이 코드가 문제없는 이유는 else문에서 무조건 값을 대입하는것이 보장되기 때문.
+            if (data1 == data2) {
+                result = "같습니다.";
+            }
+            else if (data1 < data2) {
+                result = "2번이 큽니다.";
+            } else {
+                result = "1번이 큽니다.";
+            }
+            lblResult.Text = result + "타입은 : " + result.GetType();
+        }
+
+        private void btnOutput09_Click(object sender, EventArgs e)
+        {
+            lblResult.Text = int.MinValue.ToString() + "\r\n";
+            lblResult.Text += int.MaxValue.ToString() + "\r\n";
+            lblResult.Text += Environment.NewLine;
+            lblResult.Text += uint.MinValue.ToString() + "\r\n";
+            lblResult.Text += uint.MaxValue.ToString() + "\r\n";
+            lblResult.Text += Environment.NewLine;
+            //고정소수점 decimal 16byte
+            lblResult.Text += decimal.MinValue.ToString() + "\n";
+            lblResult.Text += decimal.MaxValue.ToString() + "\n";
+        }
+
+        private void btnOutput10_Click(object sender, EventArgs e)
+        {
+            //배열
+            TextBox[] textBoxes; //배열변수 선언
+            textBoxes = new TextBox[5];//배열생성 및 할당
+
+            textBoxes[0] = tbxInput1;
+            textBoxes[1] = tbxInput2;
+            textBoxes[2] = tbxInput3;
+            textBoxes[3] = tbxInput4;
+            textBoxes[4] = tbxInput5;
+
+            //자료형은 class(struct)로 만든다.
+            //class = field(값) + method(기능) + meta data
+            int sum = 0;
+            for (int i = 0; i < textBoxes.Length; i++) {
+            
+                if (textBoxes[i].Text != null && textBoxes[i].Text.Trim() != "") {
+                    sum += int.Parse(textBoxes[i].Text);
+                }
+
+                
+            }
+            lblResult.Text = "총 합 : " + sum.ToString();
+        }
+
+        private void btnOutput11_Click(object sender, EventArgs e)
+        {
+            //배열
+            TextBox[] textBoxes; //배열변수 선언
+            textBoxes = new TextBox[5];//배열생성 및 할당
+
+            textBoxes[0] = tbxInput1;
+            textBoxes[1] = tbxInput2;
+            textBoxes[2] = tbxInput3;
+            textBoxes[3] = tbxInput4;
+            textBoxes[4] = tbxInput5;
+
+            int sum = 0;
+            int count = 0;
+            for (int i = 0; i < textBoxes.Length; i++)
+            {
+
+                if (textBoxes[i].Text != null && textBoxes[i].Text.Trim() != "")
+                {
+                    sum += int.Parse(textBoxes[i].Text);
+                    count++;
+                }
+
+
+            }
+            if (count != 0) {
+                lblResult.Text = "평균 : " + (sum / count).ToString();
+            }
+            
+        }
     }
 }
