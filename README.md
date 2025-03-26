@@ -21,6 +21,7 @@
 - F12 : 참조 찾아보기
 - ctrl + - : 이전 작업공간으로 점프
 - ctrl + shift + - : 앞으로 점프
+- alt + shift + . : 같은 단어 선택
 
 week02
 ---
@@ -53,3 +54,10 @@ string자료형은 sizeof() 사용안됨.
 
 C#은 구역별로 묶는다.
 panel컴포넌트가 그룹을 만드는 컴포넌트
+
+week04
+---
+swich case 문에서 string타입을 case로 사용할 수 있다.
+
+string타입은 class이기 때문에 초기값은 null.
+

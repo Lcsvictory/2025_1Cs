@@ -143,6 +143,7 @@
             this.chkOption.TabIndex = 3;
             this.chkOption.Text = "ENG";
             this.chkOption.UseVisualStyleBackColor = true;
+            this.chkOption.CheckedChanged += new System.EventHandler(this.chkOption_CheckedChanged);
             // 
             // pnlRadioGroup
             // 
@@ -227,6 +228,7 @@
             this.btnProcess03.TabIndex = 5;
             this.btnProcess03.Text = "연산3";
             this.btnProcess03.UseVisualStyleBackColor = true;
+            this.btnProcess03.Click += new System.EventHandler(this.btnProcess03_Click);
             // 
             // btnProcess04
             // 
@@ -236,6 +238,7 @@
             this.btnProcess04.TabIndex = 5;
             this.btnProcess04.Text = "연산4";
             this.btnProcess04.UseVisualStyleBackColor = true;
+            this.btnProcess04.Click += new System.EventHandler(this.btnProcess04_Click);
             // 
             // btnProcess05
             // 
@@ -254,6 +257,7 @@
             this.btnProcess06.TabIndex = 5;
             this.btnProcess06.Text = "얼마? 1";
             this.btnProcess06.UseVisualStyleBackColor = true;
+            this.btnProcess06.Click += new System.EventHandler(this.btnProcess06_Click);
             // 
             // btnProcess07
             // 
@@ -263,6 +267,7 @@
             this.btnProcess07.TabIndex = 5;
             this.btnProcess07.Text = "얼마? 2";
             this.btnProcess07.UseVisualStyleBackColor = true;
+            this.btnProcess07.Click += new System.EventHandler(this.btnProcess07_Click);
             // 
             // btnProcess08
             // 
@@ -272,6 +277,7 @@
             this.btnProcess08.TabIndex = 5;
             this.btnProcess08.Text = "얼마? 3";
             this.btnProcess08.UseVisualStyleBackColor = true;
+            this.btnProcess08.Click += new System.EventHandler(this.btnProcess08_Click);
             // 
             // btnProcess09
             // 

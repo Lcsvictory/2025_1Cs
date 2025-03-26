@@ -17,5 +17,18 @@ namespace Week03Homework
             InitializeComponent();
         }
 
+        private void btnNumber_Click(object sender, EventArgs e)
+        {
+            Button target = (Button)sender;
+            if (lblNumbers.Text == "0")
+            {
+                lblNumbers.Text = target.Text;
+            }else
+            {
+                lblNumbers.Text += target.Text;
+            }
+
+                
+        }
     }
 }

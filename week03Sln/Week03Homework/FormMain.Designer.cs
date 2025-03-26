@@ -62,6 +62,8 @@
             this.lblNumbers.Name = "lblNumbers";
             this.lblNumbers.Size = new System.Drawing.Size(286, 40);
             this.lblNumbers.TabIndex = 1;
+            this.lblNumbers.Text = "0";
+            this.lblNumbers.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // btnNum7
             // 
@@ -71,6 +73,7 @@
             this.btnNum7.TabIndex = 2;
             this.btnNum7.Text = "7";
             this.btnNum7.UseVisualStyleBackColor = true;
+            this.btnNum7.Click += new System.EventHandler(this.btnNumber_Click);
             // 
             // btnNum8
             // 
@@ -80,6 +83,7 @@
             this.btnNum8.TabIndex = 2;
             this.btnNum8.Text = "8";
             this.btnNum8.UseVisualStyleBackColor = true;
+            this.btnNum8.Click += new System.EventHandler(this.btnNumber_Click);
             // 
             // btnNum9
             // 
@@ -89,6 +93,7 @@
             this.btnNum9.TabIndex = 2;
             this.btnNum9.Text = "9";
             this.btnNum9.UseVisualStyleBackColor = true;
+            this.btnNum9.Click += new System.EventHandler(this.btnNumber_Click);
             // 
             // btnDiv
             // 
@@ -107,6 +112,7 @@
             this.btnNum4.TabIndex = 2;
             this.btnNum4.Text = "4";
             this.btnNum4.UseVisualStyleBackColor = true;
+            this.btnNum4.Click += new System.EventHandler(this.btnNumber_Click);
             // 
             // btnNum5
             // 
@@ -116,6 +122,7 @@
             this.btnNum5.TabIndex = 2;
             this.btnNum5.Text = "5";
             this.btnNum5.UseVisualStyleBackColor = true;
+            this.btnNum5.Click += new System.EventHandler(this.btnNumber_Click);
             // 
             // btnNum6
             // 
@@ -125,6 +132,7 @@
             this.btnNum6.TabIndex = 2;
             this.btnNum6.Text = "6";
             this.btnNum6.UseVisualStyleBackColor = true;
+            this.btnNum6.Click += new System.EventHandler(this.btnNumber_Click);
             // 
             // btnMul
             // 
@@ -143,6 +151,7 @@
             this.btnNum1.TabIndex = 2;
             this.btnNum1.Text = "1";
             this.btnNum1.UseVisualStyleBackColor = true;
+            this.btnNum1.Click += new System.EventHandler(this.btnNumber_Click);
             // 
             // btnNum2
             // 
@@ -152,6 +161,7 @@
             this.btnNum2.TabIndex = 2;
             this.btnNum2.Text = "2";
             this.btnNum2.UseVisualStyleBackColor = true;
+            this.btnNum2.Click += new System.EventHandler(this.btnNumber_Click);
             // 
             // btnNum3
             // 
@@ -161,6 +171,7 @@
             this.btnNum3.TabIndex = 2;
             this.btnNum3.Text = "3";
             this.btnNum3.UseVisualStyleBackColor = true;
+            this.btnNum3.Click += new System.EventHandler(this.btnNumber_Click);
             // 
             // btnSub
             // 
@@ -179,6 +190,7 @@
             this.btnNum0.TabIndex = 2;
             this.btnNum0.Text = "0";
             this.btnNum0.UseVisualStyleBackColor = true;
+            this.btnNum0.Click += new System.EventHandler(this.btnNumber_Click);
             // 
             // btnCal
             // 
