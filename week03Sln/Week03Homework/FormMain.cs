@@ -16,6 +16,7 @@ namespace Week03Homework
         List<string> expressionFix = new List<string>();
         bool isOperator = false;
         bool middleCal = false;
+        bool isDecimal = false;
         int paranCnt = 0;
 
         public FormMain()
@@ -182,6 +183,10 @@ namespace Week03Homework
                     lblTest.Text += lblNumbers.Text;
                     expressionFix.Add(lblNumbers.Text);
                 }
+                if (lblTest.Text[lblTest.Text.Length - 1] == '.')
+                {
+                    lblTest.Text += "0";
+                }
 
                 lblTest.Text += target.Text;
 
@@ -204,6 +209,7 @@ namespace Week03Homework
             }
 
             if (middleCal == false) { middleCal = true; }
+            isDecimal = false;
 
         }
 
@@ -219,10 +225,15 @@ namespace Week03Homework
                     lblTest.Text += lblNumbers.Text;
                     expressionFix.Add(lblNumbers.Text);
                 }
-                    //lblTest.Text += lblNumbers.Text; //숫자임
+
+                if (lblTest.Text[lblTest.Text.Length - 1] == '.')
+                {
+                    lblTest.Text += "0";
+                }
+                //lblTest.Text += lblNumbers.Text; //숫자임
                 //expressionFix.Add(lblNumbers.Text);
-                
-               
+
+
                 if ((expressionFix[expressionFix.Count - 1] == ")" || expressionFix[expressionFix.Count - 1].All(char.IsDigit)))
                 {
                     if (paranCnt > 0)
@@ -243,7 +254,7 @@ namespace Week03Homework
                 
                 lblTest.Text += " = ";
                 lblTest.Text += lblNumbers.Text;
-
+                isDecimal = false;
 
             } else
             {
@@ -277,6 +288,7 @@ namespace Week03Homework
             middleCal = false;
             isOperator = false;
             expressionFix.Clear();
+            isDecimal = false;
         }
 
         private void btnParen_Click(object sender, EventArgs e)
@@ -293,14 +305,28 @@ namespace Week03Homework
             {
                 if (lblNumbers.Text.Length > 0)
                 {
+                    
                     lblTest.Text += lblNumbers.Text;
                     lblTest.Text += ")";
                     expressionFix.Add(lblNumbers.Text);
                     expressionFix.Add(")");
                     paranCnt--;
 
+                    
+                    isDecimal = false;
+
                 }
-                
+
+            }
+        }
+
+        private void btnDot_Click(object sender, EventArgs e)
+        {
+            Button target = (Button)sender;
+            if (!isDecimal)
+            {
+                lblNumbers.Text += ".";
+                isDecimal = true;
             }
         }
     }
