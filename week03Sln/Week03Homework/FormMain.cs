@@ -17,7 +17,9 @@ namespace Week03Homework
         bool isOperator = false;
         bool middleCal = false;
         bool isDecimal = false;
+        bool isLeftParen = false;
         int paranCnt = 0;
+
 
         public FormMain()
         {
@@ -289,6 +291,7 @@ namespace Week03Homework
             isOperator = false;
             expressionFix.Clear();
             isDecimal = false;
+            isLeftParen = false;
         }
 
         private void btnParen_Click(object sender, EventArgs e)
@@ -299,13 +302,14 @@ namespace Week03Homework
                 lblTest.Text += "(";
                 expressionFix.Add("(");
                 paranCnt++;
+                isLeftParen = true;
 
             }
             else
             {
-                if (lblNumbers.Text.Length > 0)
+                if (isLeftParen && lblNumbers.Text.Length > 0)
                 {
-                    
+                    isLeftParen = false;
                     lblTest.Text += lblNumbers.Text;
                     lblTest.Text += ")";
                     expressionFix.Add(lblNumbers.Text);
