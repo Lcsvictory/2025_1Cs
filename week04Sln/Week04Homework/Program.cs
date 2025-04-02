@@ -16,7 +16,7 @@ namespace Week04Homework
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FomrManager());
+            Application.Run(new FormManager());
         }
     }
 }

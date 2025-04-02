@@ -1,6 +1,6 @@
 ﻿namespace Week04Homework
 {
-    partial class FomrManager
+    partial class FormManager
     {
         /// <summary>
         /// 필수 디자이너 변수입니다.
@@ -376,6 +376,7 @@
             this.tabMain.SelectedIndex = 0;
             this.tabMain.Size = new System.Drawing.Size(691, 445);
             this.tabMain.TabIndex = 5;
+            this.tabMain.SelectedIndexChanged += new System.EventHandler(this.tabMain_SelectedIndexChanged);
             // 
             // tpgDepartment
             // 
@@ -456,7 +457,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(22, 20);
+            this.label1.Location = new System.Drawing.Point(25, 18);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(53, 12);
@@ -466,7 +467,7 @@
             // tbxDepartmentCode
             // 
             this.tbxDepartmentCode.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tbxDepartmentCode.Location = new System.Drawing.Point(89, 18);
+            this.tbxDepartmentCode.Location = new System.Drawing.Point(92, 16);
             this.tbxDepartmentCode.Margin = new System.Windows.Forms.Padding(2);
             this.tbxDepartmentCode.Name = "tbxDepartmentCode";
             this.tbxDepartmentCode.Size = new System.Drawing.Size(122, 21);
@@ -474,7 +475,7 @@
             // 
             // tbxDepartmentName
             // 
-            this.tbxDepartmentName.Location = new System.Drawing.Point(89, 49);
+            this.tbxDepartmentName.Location = new System.Drawing.Point(92, 47);
             this.tbxDepartmentName.Margin = new System.Windows.Forms.Padding(2);
             this.tbxDepartmentName.Name = "tbxDepartmentName";
             this.tbxDepartmentName.Size = new System.Drawing.Size(122, 21);
@@ -483,7 +484,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(22, 51);
+            this.label2.Location = new System.Drawing.Point(25, 49);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 12);
@@ -492,19 +493,20 @@
             // 
             // btnRegisterDepartment
             // 
-            this.btnRegisterDepartment.Location = new System.Drawing.Point(231, 18);
+            this.btnRegisterDepartment.Location = new System.Drawing.Point(234, 16);
             this.btnRegisterDepartment.Margin = new System.Windows.Forms.Padding(2);
             this.btnRegisterDepartment.Name = "btnRegisterDepartment";
             this.btnRegisterDepartment.Size = new System.Drawing.Size(72, 53);
             this.btnRegisterDepartment.TabIndex = 7;
             this.btnRegisterDepartment.Text = "등록";
             this.btnRegisterDepartment.UseVisualStyleBackColor = true;
+            this.btnRegisterDepartment.Click += new System.EventHandler(this.btnRegisterDepartment_Click);
             // 
             // lbxDepartment
             // 
             this.lbxDepartment.FormattingEnabled = true;
             this.lbxDepartment.ItemHeight = 12;
-            this.lbxDepartment.Location = new System.Drawing.Point(24, 89);
+            this.lbxDepartment.Location = new System.Drawing.Point(27, 87);
             this.lbxDepartment.Margin = new System.Windows.Forms.Padding(2);
             this.lbxDepartment.Name = "lbxDepartment";
             this.lbxDepartment.Size = new System.Drawing.Size(614, 232);
@@ -512,13 +514,14 @@
             // 
             // btnRemoveDepartment
             // 
-            this.btnRemoveDepartment.Location = new System.Drawing.Point(566, 335);
+            this.btnRemoveDepartment.Location = new System.Drawing.Point(569, 333);
             this.btnRemoveDepartment.Margin = new System.Windows.Forms.Padding(2);
             this.btnRemoveDepartment.Name = "btnRemoveDepartment";
             this.btnRemoveDepartment.Size = new System.Drawing.Size(72, 53);
             this.btnRemoveDepartment.TabIndex = 7;
             this.btnRemoveDepartment.Text = "삭제";
             this.btnRemoveDepartment.UseVisualStyleBackColor = true;
+            this.btnRemoveDepartment.Click += new System.EventHandler(this.btnRemoveDepartment_Click);
             // 
             // btnRemoveProfessor
             // 
@@ -596,6 +599,7 @@
             this.cmbProfessorDepartment.Name = "cmbProfessorDepartment";
             this.cmbProfessorDepartment.Size = new System.Drawing.Size(214, 20);
             this.cmbProfessorDepartment.TabIndex = 16;
+            this.cmbProfessorDepartment.SelectedIndexChanged += new System.EventHandler(this.cmbProfessorDepartment_SelectedIndexChanged);
             // 
             // label5
             // 
@@ -607,14 +611,14 @@
             this.label5.TabIndex = 15;
             this.label5.Text = "소속학과";
             // 
-            // FomrManager
+            // FormManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(691, 445);
             this.Controls.Add(this.tabMain);
             this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.Name = "FomrManager";
+            this.Name = "FormManager";
             this.Text = "학생관리";
             this.tabMain.ResumeLayout(false);
             this.tpgDepartment.ResumeLayout(false);
