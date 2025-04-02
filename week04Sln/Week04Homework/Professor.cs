@@ -12,6 +12,13 @@ namespace Week04Homework
         public string Number;
         public string Name;
 
+        public Professor(string number, string name, string departmentCode)
+        {
+            this.Number = number;
+            this.Name = name;
+            this.DepartmentCode = departmentCode;
+        }
+
         public override string ToString()
         {
             return $"[{this.Number}] {this.Name}";
