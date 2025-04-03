@@ -167,6 +167,7 @@ namespace Week04Homework
                         }
                     }
                     cmbDepartment.SelectedIndex = -1;
+                    cmbAdvisor.SelectedIndex = -1;
                     break;
                 default:
                     break;
@@ -313,7 +314,12 @@ namespace Week04Homework
         private void cmbDepartment_SelectedIndexChanged(object sender, EventArgs e)
         {
             cmbAdvisor.Items.Clear();
+            if (cmbDepartment.SelectedItem == null)
+            {
+                return;
+            }
             string deptcode = cmbDepartment.SelectedItem.ToString();
+
             int rightBigParen = deptcode.IndexOf("]") - 1;
 
             deptcode = deptcode.Substring(1, rightBigParen);
@@ -326,6 +332,22 @@ namespace Week04Homework
                 }
             }
             
+        }
+
+        private void btnNew_Click(object sender, EventArgs e)
+        {
+            tbxNumber.Text = "20";
+            tbxName.Text = "";
+            tbxBirtYear.Text = "20";
+            tbxBirthMonth.Text = "";
+            tbxBirthDay.Text = "";
+            cmbDepartment.SelectedIndex = -1;
+            cmbAdvisor.SelectedIndex = -1;
+            cmbYear.SelectedIndex = -1;
+            cmbClass.SelectedIndex = -1;
+            cmbRegStatus.SelectedIndex = -1;
+            tbxAddress.Text = "";
+            tbxAddress.Text = "";
         }
     }
 }
