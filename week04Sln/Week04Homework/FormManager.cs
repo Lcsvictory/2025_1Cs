@@ -24,6 +24,20 @@ namespace Week04Homework
             departments = new Department[100];
             professors = new List<Professor>();
             //tbxDepartmentCode.Focus();
+
+            for (int i = 1; i < 5; i++)
+            {
+                cmbYear.Items.Add(i);
+            }
+            for (char j = 'A'; j < 'D'; j++)
+            {
+                cmbClass.Items.Add(j);
+            }
+            cmbRegStatus.Items.Add("재학");
+            cmbRegStatus.Items.Add("졸업");
+            cmbRegStatus.Items.Add("휴학");
+            cmbRegStatus.Items.Add("자퇴");
+
         }
 
         private void keyDown(object sender, KeyEventArgs e)
@@ -144,6 +158,15 @@ namespace Week04Homework
                     lbxProfessor.Items.Clear();
                     break;
                 case 2:
+                    cmbDepartment.Items.Clear();
+                    foreach (var dept in departments)
+                    {
+                        if (dept != null)
+                        {
+                            cmbDepartment.Items.Add(dept);
+                        }
+                    }
+                    cmbDepartment.SelectedIndex = -1;
                     break;
                 default:
                     break;
@@ -284,6 +307,24 @@ namespace Week04Homework
             }
 
             lbxProfessor.SelectedIndex = -1;
+            
+        }
+
+        private void cmbDepartment_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cmbAdvisor.Items.Clear();
+            string deptcode = cmbDepartment.SelectedItem.ToString();
+            int rightBigParen = deptcode.IndexOf("]") - 1;
+
+            deptcode = deptcode.Substring(1, rightBigParen);
+
+            foreach (var prof in professors)
+            {
+                if (prof != null && deptcode == prof.DepartmentCode)
+                {
+                    cmbAdvisor.Items.Add(prof);
+                }
+            }
             
         }
     }
