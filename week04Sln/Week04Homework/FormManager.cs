@@ -15,7 +15,9 @@ namespace Week04Homework
     {
         Department[] departments;
         List<Professor> professors;
-        //ArrayList[] professors1;
+        Dictionary<string, Student> students;
+        List<Grade> testGrades;
+        TextBox[] tbxTestScores;
 
 
         public FormManager()
@@ -23,7 +25,19 @@ namespace Week04Homework
             InitializeComponent();
             departments = new Department[100];
             professors = new List<Professor>();
-            //tbxDepartmentCode.Focus();
+            students = new Dictionary<string, Student>();
+            tbxTestScores = new TextBox[]
+            {
+                tbxTestScore1,
+                tbxTestScore2,
+                tbxTestScore3,
+                tbxTestScore4,
+                tbxTestScore5,
+                tbxTestScore6,
+                tbxTestScore7,
+                tbxTestScore8,
+                tbxTestScore9,
+            };
 
             for (int i = 1; i < 5; i++)
             {
@@ -336,9 +350,14 @@ namespace Week04Homework
 
         private void btnNew_Click(object sender, EventArgs e)
         {
+            ClearStudentInfo();
+        }
+
+        private void ClearStudentInfo()
+        {
             tbxNumber.Text = "20";
             tbxName.Text = "";
-            tbxBirtYear.Text = "20";
+            tbxBirthYear.Text = "20";
             tbxBirthMonth.Text = "";
             tbxBirthDay.Text = "";
             cmbDepartment.SelectedIndex = -1;
@@ -348,6 +367,162 @@ namespace Week04Homework
             cmbRegStatus.SelectedIndex = -1;
             tbxAddress.Text = "";
             tbxAddress.Text = "";
+            tbxNumber.ReadOnly = false;
+        }
+
+
+        Student selectedStudent = null;
+        private void btnRegister_Click(object sender, EventArgs e)
+        {
+            if (selectedStudent == null)
+            {
+                RegisterStudent();
+            } else
+            {
+                UpdateStudent();
+            }
+        }
+
+        private void RegisterStudent()
+        {
+            var number = tbxNumber.Text.Trim();
+            var name = tbxName.Text.Trim();
+            if (string.IsNullOrEmpty(name)) {
+                MessageBox.Show("학번을 써주세요");
+                tbxNumber.Focus();
+                return;
+                //학번 이름 구분해서 출력
+            }
+            if (string.IsNullOrEmpty(number))
+            {
+                MessageBox.Show("이름을 써주세요");
+                tbxName.Focus();
+                return;
+            }
+            if (true == students.ContainsKey(number))
+            {
+                MessageBox.Show("동일한 학번이 존재합니다.");
+                tbxNumber.Focus();
+                return;
+            }
+            Student student = new Student();
+            student.Number = number;
+            student.Name = name;
+
+
+            int BirthYear, BirthMonth;//, BirthDay;
+            if (int.TryParse(tbxBirthYear.Text, out BirthYear))
+            {
+                if (BirthYear <= 1960)
+                {
+                    MessageBox.Show("올바른 년도를 입력해주세요.");
+                    tbxBirthYear.Focus();
+                    return;
+                }
+            } else
+            {
+                MessageBox.Show("년도를 입력하세요.");
+                tbxBirthYear.Focus();
+                return;
+            }
+
+            if (int.TryParse(tbxBirthMonth.Text, out BirthMonth))
+            {
+                if (BirthMonth < 1 || BirthMonth > 12)
+                {
+                    MessageBox.Show("올바른 월을 입력해주세요.");
+                    tbxBirthMonth.Focus();
+                    return;
+                }
+            }
+            else
+            {
+                MessageBox.Show("월을 입력하세요.");
+                tbxBirthMonth.Focus();
+                return;
+            }
+
+            if (int.TryParse(tbxBirthDay.Text, out int BirthDay))
+            {
+                if (BirthDay < 1 || BirthDay > 31)
+                {
+                    MessageBox.Show("올바른 일을 입력해주세요.");
+                    tbxBirthDay.Focus();
+                    return;
+                }
+            }
+            else
+            {
+                MessageBox.Show("일을 입력하세요.");
+                tbxBirthDay.Focus();
+                return;
+            }
+
+
+            student.BirthInfo = new DateTime(BirthYear, BirthMonth, BirthDay);
+
+            if (cmbDepartment.SelectedIndex < 0)
+            {
+                //cmbDepartment.Focus();
+                //return;
+                student.DepartmentCode = null;
+            }else
+            {
+                student.DepartmentCode = (cmbDepartment.SelectedItem as Department).Code;
+            }
+            students[number] = student;
+            //students.Add(number, student); 키 중복시 에러
+            lbxDictionary.Items.Add(student);
+        }
+
+        private void UpdateStudent()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void lbxDictionary_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            ClearStudentInfo();
+            //btnNew_Click(sender, EventArgs.Empty);
+
+            if (lbxDictionary.SelectedIndex < 0)
+            {
+                return;
+            }
+            selectedStudent = (lbxDictionary.SelectedItem as Student);
+
+            if (selectedStudent != null){
+                DisplaySelectedStudent(selectedStudent);
+            }
+        }
+
+        private void DisplaySelectedStudent(Student student)
+        {
+            tbxNumber.ReadOnly = true;
+            tbxNumber.Text = student.Number;
+            tbxName.Text = student.Name;
+
+            tbxBirthYear.Text = student.BirthInfo.Year.ToString();
+            tbxBirthMonth.Text = student.BirthInfo.Month.ToString();
+            tbxBirthDay.Text = student.BirthInfo.Day.ToString();
+        }
+
+        private void btnTestSearchStudent_Click(object sender, EventArgs e)
+        {
+            selectedStudent = SearchStudentByNumber(tbxTestNumber.Text);
+
+        }
+
+        private Student SearchStudentByNumber(string number)
+        {
+            if (students.ContainsKey(number)) //python에서 get()과 비슷함.
+            {
+                return students[number];
+            } else
+            {
+                return null;
+            }
         }
     }
 }

@@ -33,7 +33,7 @@
             this.tbxName = new System.Windows.Forms.TextBox();
             this.lblName = new System.Windows.Forms.Label();
             this.lbxArray = new System.Windows.Forms.ListBox();
-            this.tbxBirtYear = new System.Windows.Forms.TextBox();
+            this.tbxBirthYear = new System.Windows.Forms.TextBox();
             this.lblBirth = new System.Windows.Forms.Label();
             this.tbxBirthMonth = new System.Windows.Forms.TextBox();
             this.lblBirthYear = new System.Windows.Forms.Label();
@@ -117,7 +117,7 @@
             // tbxNumber
             // 
             this.tbxNumber.Location = new System.Drawing.Point(115, 17);
-            this.tbxNumber.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbxNumber.Margin = new System.Windows.Forms.Padding(2);
             this.tbxNumber.Name = "tbxNumber";
             this.tbxNumber.Size = new System.Drawing.Size(96, 21);
             this.tbxNumber.TabIndex = 0;
@@ -135,7 +135,7 @@
             // tbxName
             // 
             this.tbxName.Location = new System.Drawing.Point(344, 17);
-            this.tbxName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbxName.Margin = new System.Windows.Forms.Padding(2);
             this.tbxName.Name = "tbxName";
             this.tbxName.Size = new System.Drawing.Size(122, 21);
             this.tbxName.TabIndex = 0;
@@ -155,18 +155,18 @@
             this.lbxArray.FormattingEnabled = true;
             this.lbxArray.ItemHeight = 12;
             this.lbxArray.Location = new System.Drawing.Point(483, 17);
-            this.lbxArray.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lbxArray.Margin = new System.Windows.Forms.Padding(2);
             this.lbxArray.Name = "lbxArray";
             this.lbxArray.Size = new System.Drawing.Size(171, 100);
             this.lbxArray.TabIndex = 2;
             // 
-            // tbxBirtYear
+            // tbxBirthYear
             // 
-            this.tbxBirtYear.Location = new System.Drawing.Point(115, 56);
-            this.tbxBirtYear.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.tbxBirtYear.Name = "tbxBirtYear";
-            this.tbxBirtYear.Size = new System.Drawing.Size(96, 21);
-            this.tbxBirtYear.TabIndex = 0;
+            this.tbxBirthYear.Location = new System.Drawing.Point(115, 56);
+            this.tbxBirthYear.Margin = new System.Windows.Forms.Padding(2);
+            this.tbxBirthYear.Name = "tbxBirthYear";
+            this.tbxBirthYear.Size = new System.Drawing.Size(96, 21);
+            this.tbxBirthYear.TabIndex = 0;
             // 
             // lblBirth
             // 
@@ -181,7 +181,7 @@
             // tbxBirthMonth
             // 
             this.tbxBirthMonth.Location = new System.Drawing.Point(276, 55);
-            this.tbxBirthMonth.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbxBirthMonth.Margin = new System.Windows.Forms.Padding(2);
             this.tbxBirthMonth.Name = "tbxBirthMonth";
             this.tbxBirthMonth.Size = new System.Drawing.Size(52, 21);
             this.tbxBirthMonth.TabIndex = 0;
@@ -209,7 +209,7 @@
             // tbxBirthDay
             // 
             this.tbxBirthDay.Location = new System.Drawing.Point(386, 55);
-            this.tbxBirthDay.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbxBirthDay.Margin = new System.Windows.Forms.Padding(2);
             this.tbxBirthDay.Name = "tbxBirthDay";
             this.tbxBirthDay.Size = new System.Drawing.Size(52, 21);
             this.tbxBirthDay.TabIndex = 0;
@@ -239,7 +239,7 @@
             this.cmbDepartment.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbDepartment.FormattingEnabled = true;
             this.cmbDepartment.Location = new System.Drawing.Point(115, 96);
-            this.cmbDepartment.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmbDepartment.Margin = new System.Windows.Forms.Padding(2);
             this.cmbDepartment.Name = "cmbDepartment";
             this.cmbDepartment.Size = new System.Drawing.Size(351, 20);
             this.cmbDepartment.TabIndex = 3;
@@ -270,7 +270,7 @@
             this.cmbYear.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbYear.FormattingEnabled = true;
             this.cmbYear.Location = new System.Drawing.Point(115, 172);
-            this.cmbYear.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmbYear.Margin = new System.Windows.Forms.Padding(2);
             this.cmbYear.Name = "cmbYear";
             this.cmbYear.Size = new System.Drawing.Size(96, 20);
             this.cmbYear.TabIndex = 3;
@@ -290,7 +290,7 @@
             this.cmbClass.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbClass.FormattingEnabled = true;
             this.cmbClass.Location = new System.Drawing.Point(350, 172);
-            this.cmbClass.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmbClass.Margin = new System.Windows.Forms.Padding(2);
             this.cmbClass.Name = "cmbClass";
             this.cmbClass.Size = new System.Drawing.Size(116, 20);
             this.cmbClass.TabIndex = 3;
@@ -310,7 +310,7 @@
             this.cmbRegStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbRegStatus.FormattingEnabled = true;
             this.cmbRegStatus.Location = new System.Drawing.Point(115, 211);
-            this.cmbRegStatus.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmbRegStatus.Margin = new System.Windows.Forms.Padding(2);
             this.cmbRegStatus.Name = "cmbRegStatus";
             this.cmbRegStatus.Size = new System.Drawing.Size(96, 20);
             this.cmbRegStatus.TabIndex = 3;
@@ -328,7 +328,7 @@
             // tbxAddress
             // 
             this.tbxAddress.Location = new System.Drawing.Point(115, 247);
-            this.tbxAddress.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbxAddress.Margin = new System.Windows.Forms.Padding(2);
             this.tbxAddress.Name = "tbxAddress";
             this.tbxAddress.Size = new System.Drawing.Size(351, 21);
             this.tbxAddress.TabIndex = 0;
@@ -336,7 +336,7 @@
             // tbxContact
             // 
             this.tbxContact.Location = new System.Drawing.Point(115, 285);
-            this.tbxContact.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbxContact.Margin = new System.Windows.Forms.Padding(2);
             this.tbxContact.Name = "tbxContact";
             this.tbxContact.Size = new System.Drawing.Size(351, 21);
             this.tbxContact.TabIndex = 0;
@@ -356,7 +356,7 @@
             this.lbxList.FormattingEnabled = true;
             this.lbxList.ItemHeight = 12;
             this.lbxList.Location = new System.Drawing.Point(483, 135);
-            this.lbxList.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lbxList.Margin = new System.Windows.Forms.Padding(2);
             this.lbxList.Name = "lbxList";
             this.lbxList.Size = new System.Drawing.Size(171, 100);
             this.lbxList.TabIndex = 2;
@@ -366,15 +366,16 @@
             this.lbxDictionary.FormattingEnabled = true;
             this.lbxDictionary.ItemHeight = 12;
             this.lbxDictionary.Location = new System.Drawing.Point(483, 247);
-            this.lbxDictionary.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lbxDictionary.Margin = new System.Windows.Forms.Padding(2);
             this.lbxDictionary.Name = "lbxDictionary";
             this.lbxDictionary.Size = new System.Drawing.Size(171, 136);
             this.lbxDictionary.TabIndex = 2;
+            this.lbxDictionary.SelectedIndexChanged += new System.EventHandler(this.lbxDictionary_SelectedIndexChanged);
             // 
             // btnNew
             // 
             this.btnNew.Location = new System.Drawing.Point(21, 329);
-            this.btnNew.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnNew.Margin = new System.Windows.Forms.Padding(2);
             this.btnNew.Name = "btnNew";
             this.btnNew.Size = new System.Drawing.Size(83, 53);
             this.btnNew.TabIndex = 4;
@@ -385,12 +386,13 @@
             // btnRegister
             // 
             this.btnRegister.Location = new System.Drawing.Point(115, 329);
-            this.btnRegister.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnRegister.Margin = new System.Windows.Forms.Padding(2);
             this.btnRegister.Name = "btnRegister";
             this.btnRegister.Size = new System.Drawing.Size(350, 53);
             this.btnRegister.TabIndex = 4;
             this.btnRegister.Text = "등록";
             this.btnRegister.UseVisualStyleBackColor = true;
+            this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
             // 
             // tabMain
             // 
@@ -418,7 +420,7 @@
             this.tpgDepartment.Controls.Add(this.label2);
             this.tpgDepartment.Location = new System.Drawing.Point(4, 34);
             this.tpgDepartment.Name = "tpgDepartment";
-            this.tpgDepartment.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tpgDepartment.Padding = new System.Windows.Forms.Padding(3);
             this.tpgDepartment.Size = new System.Drawing.Size(683, 407);
             this.tpgDepartment.TabIndex = 0;
             this.tpgDepartment.Text = "학과정보";
@@ -427,7 +429,7 @@
             // btnRemoveDepartment
             // 
             this.btnRemoveDepartment.Location = new System.Drawing.Point(569, 333);
-            this.btnRemoveDepartment.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnRemoveDepartment.Margin = new System.Windows.Forms.Padding(2);
             this.btnRemoveDepartment.Name = "btnRemoveDepartment";
             this.btnRemoveDepartment.Size = new System.Drawing.Size(72, 53);
             this.btnRemoveDepartment.TabIndex = 7;
@@ -438,7 +440,7 @@
             // btnRegisterDepartment
             // 
             this.btnRegisterDepartment.Location = new System.Drawing.Point(234, 16);
-            this.btnRegisterDepartment.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnRegisterDepartment.Margin = new System.Windows.Forms.Padding(2);
             this.btnRegisterDepartment.Name = "btnRegisterDepartment";
             this.btnRegisterDepartment.Size = new System.Drawing.Size(72, 53);
             this.btnRegisterDepartment.TabIndex = 7;
@@ -451,7 +453,7 @@
             this.lbxDepartment.FormattingEnabled = true;
             this.lbxDepartment.ItemHeight = 12;
             this.lbxDepartment.Location = new System.Drawing.Point(27, 87);
-            this.lbxDepartment.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lbxDepartment.Margin = new System.Windows.Forms.Padding(2);
             this.lbxDepartment.Name = "lbxDepartment";
             this.lbxDepartment.Size = new System.Drawing.Size(614, 232);
             this.lbxDepartment.TabIndex = 6;
@@ -470,7 +472,7 @@
             // 
             this.tbxDepartmentCode.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tbxDepartmentCode.Location = new System.Drawing.Point(92, 16);
-            this.tbxDepartmentCode.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbxDepartmentCode.Margin = new System.Windows.Forms.Padding(2);
             this.tbxDepartmentCode.Name = "tbxDepartmentCode";
             this.tbxDepartmentCode.Size = new System.Drawing.Size(122, 21);
             this.tbxDepartmentCode.TabIndex = 2;
@@ -479,7 +481,7 @@
             // tbxDepartmentName
             // 
             this.tbxDepartmentName.Location = new System.Drawing.Point(92, 47);
-            this.tbxDepartmentName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbxDepartmentName.Margin = new System.Windows.Forms.Padding(2);
             this.tbxDepartmentName.Name = "tbxDepartmentName";
             this.tbxDepartmentName.Size = new System.Drawing.Size(122, 21);
             this.tbxDepartmentName.TabIndex = 3;
@@ -508,7 +510,7 @@
             this.tpgProfessor.Controls.Add(this.lblProfessorName);
             this.tpgProfessor.Location = new System.Drawing.Point(4, 34);
             this.tpgProfessor.Name = "tpgProfessor";
-            this.tpgProfessor.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tpgProfessor.Padding = new System.Windows.Forms.Padding(3);
             this.tpgProfessor.Size = new System.Drawing.Size(683, 407);
             this.tpgProfessor.TabIndex = 1;
             this.tpgProfessor.Text = "교수정보";
@@ -519,7 +521,7 @@
             this.cmbProfessorDepartment.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbProfessorDepartment.FormattingEnabled = true;
             this.cmbProfessorDepartment.Location = new System.Drawing.Point(87, 15);
-            this.cmbProfessorDepartment.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmbProfessorDepartment.Margin = new System.Windows.Forms.Padding(2);
             this.cmbProfessorDepartment.Name = "cmbProfessorDepartment";
             this.cmbProfessorDepartment.Size = new System.Drawing.Size(214, 20);
             this.cmbProfessorDepartment.TabIndex = 16;
@@ -538,7 +540,7 @@
             // btnRemoveProfessor
             // 
             this.btnRemoveProfessor.Location = new System.Drawing.Point(564, 354);
-            this.btnRemoveProfessor.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnRemoveProfessor.Margin = new System.Windows.Forms.Padding(2);
             this.btnRemoveProfessor.Name = "btnRemoveProfessor";
             this.btnRemoveProfessor.Size = new System.Drawing.Size(72, 29);
             this.btnRemoveProfessor.TabIndex = 13;
@@ -549,7 +551,7 @@
             // btnRegisterProfessor
             // 
             this.btnRegisterProfessor.Location = new System.Drawing.Point(229, 47);
-            this.btnRegisterProfessor.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnRegisterProfessor.Margin = new System.Windows.Forms.Padding(2);
             this.btnRegisterProfessor.Name = "btnRegisterProfessor";
             this.btnRegisterProfessor.Size = new System.Drawing.Size(72, 53);
             this.btnRegisterProfessor.TabIndex = 14;
@@ -562,7 +564,7 @@
             this.lbxProfessor.FormattingEnabled = true;
             this.lbxProfessor.ItemHeight = 12;
             this.lbxProfessor.Location = new System.Drawing.Point(22, 118);
-            this.lbxProfessor.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lbxProfessor.Margin = new System.Windows.Forms.Padding(2);
             this.lbxProfessor.Name = "lbxProfessor";
             this.lbxProfessor.Size = new System.Drawing.Size(614, 232);
             this.lbxProfessor.TabIndex = 12;
@@ -581,7 +583,7 @@
             // 
             this.tbxProfessorNumber.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tbxProfessorNumber.Location = new System.Drawing.Point(87, 47);
-            this.tbxProfessorNumber.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbxProfessorNumber.Margin = new System.Windows.Forms.Padding(2);
             this.tbxProfessorNumber.Name = "tbxProfessorNumber";
             this.tbxProfessorNumber.Size = new System.Drawing.Size(122, 21);
             this.tbxProfessorNumber.TabIndex = 8;
@@ -590,7 +592,7 @@
             // tbxProfessorName
             // 
             this.tbxProfessorName.Location = new System.Drawing.Point(87, 78);
-            this.tbxProfessorName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbxProfessorName.Margin = new System.Windows.Forms.Padding(2);
             this.tbxProfessorName.Name = "tbxProfessorName";
             this.tbxProfessorName.Size = new System.Drawing.Size(122, 21);
             this.tbxProfessorName.TabIndex = 9;
@@ -612,7 +614,7 @@
             this.tpgStudent.Controls.Add(this.btnRegister);
             this.tpgStudent.Controls.Add(this.tbxNumber);
             this.tpgStudent.Controls.Add(this.btnNew);
-            this.tpgStudent.Controls.Add(this.tbxBirtYear);
+            this.tpgStudent.Controls.Add(this.tbxBirthYear);
             this.tpgStudent.Controls.Add(this.cmbClass);
             this.tpgStudent.Controls.Add(this.cmbRegStatus);
             this.tpgStudent.Controls.Add(this.tbxAddress);
@@ -640,7 +642,7 @@
             this.tpgStudent.Controls.Add(this.lblContact);
             this.tpgStudent.Location = new System.Drawing.Point(4, 34);
             this.tpgStudent.Name = "tpgStudent";
-            this.tpgStudent.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tpgStudent.Padding = new System.Windows.Forms.Padding(3);
             this.tpgStudent.Size = new System.Drawing.Size(683, 407);
             this.tpgStudent.TabIndex = 2;
             this.tpgStudent.Text = "학생정보";
@@ -651,7 +653,7 @@
             this.cmbAdvisor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbAdvisor.FormattingEnabled = true;
             this.cmbAdvisor.Location = new System.Drawing.Point(114, 133);
-            this.cmbAdvisor.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmbAdvisor.Margin = new System.Windows.Forms.Padding(2);
             this.cmbAdvisor.Name = "cmbAdvisor";
             this.cmbAdvisor.Size = new System.Drawing.Size(351, 20);
             this.cmbAdvisor.TabIndex = 3;
@@ -696,7 +698,7 @@
             // 
             // btnTestRegScore
             // 
-            this.btnTestRegScore.Location = new System.Drawing.Point(267, 279);
+            this.btnTestRegScore.Location = new System.Drawing.Point(266, 268);
             this.btnTestRegScore.Name = "btnTestRegScore";
             this.btnTestRegScore.Size = new System.Drawing.Size(66, 48);
             this.btnTestRegScore.TabIndex = 41;
@@ -711,11 +713,12 @@
             this.btnTestSearchStudent.TabIndex = 40;
             this.btnTestSearchStudent.Text = "검색";
             this.btnTestSearchStudent.UseVisualStyleBackColor = true;
+            this.btnTestSearchStudent.Click += new System.EventHandler(this.btnTestSearchStudent_Click);
             // 
             // lblTestCourse9Title
             // 
             this.lblTestCourse9Title.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblTestCourse9Title.Location = new System.Drawing.Point(21, 306);
+            this.lblTestCourse9Title.Location = new System.Drawing.Point(20, 295);
             this.lblTestCourse9Title.Name = "lblTestCourse9Title";
             this.lblTestCourse9Title.Size = new System.Drawing.Size(112, 21);
             this.lblTestCourse9Title.TabIndex = 15;
@@ -725,7 +728,7 @@
             // lblTestCourse6Title
             // 
             this.lblTestCourse6Title.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblTestCourse6Title.Location = new System.Drawing.Point(21, 225);
+            this.lblTestCourse6Title.Location = new System.Drawing.Point(20, 214);
             this.lblTestCourse6Title.Name = "lblTestCourse6Title";
             this.lblTestCourse6Title.Size = new System.Drawing.Size(112, 21);
             this.lblTestCourse6Title.TabIndex = 16;
@@ -735,7 +738,7 @@
             // lblTestCourse3Title
             // 
             this.lblTestCourse3Title.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblTestCourse3Title.Location = new System.Drawing.Point(21, 142);
+            this.lblTestCourse3Title.Location = new System.Drawing.Point(20, 131);
             this.lblTestCourse3Title.Name = "lblTestCourse3Title";
             this.lblTestCourse3Title.Size = new System.Drawing.Size(112, 21);
             this.lblTestCourse3Title.TabIndex = 17;
@@ -745,7 +748,7 @@
             // lblTestCourse8Title
             // 
             this.lblTestCourse8Title.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblTestCourse8Title.Location = new System.Drawing.Point(21, 279);
+            this.lblTestCourse8Title.Location = new System.Drawing.Point(20, 268);
             this.lblTestCourse8Title.Name = "lblTestCourse8Title";
             this.lblTestCourse8Title.Size = new System.Drawing.Size(112, 21);
             this.lblTestCourse8Title.TabIndex = 18;
@@ -755,7 +758,7 @@
             // lblTestCourse5Title
             // 
             this.lblTestCourse5Title.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblTestCourse5Title.Location = new System.Drawing.Point(21, 198);
+            this.lblTestCourse5Title.Location = new System.Drawing.Point(20, 187);
             this.lblTestCourse5Title.Name = "lblTestCourse5Title";
             this.lblTestCourse5Title.Size = new System.Drawing.Size(112, 21);
             this.lblTestCourse5Title.TabIndex = 19;
@@ -765,7 +768,7 @@
             // lblTestCourse2Title
             // 
             this.lblTestCourse2Title.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblTestCourse2Title.Location = new System.Drawing.Point(21, 115);
+            this.lblTestCourse2Title.Location = new System.Drawing.Point(20, 104);
             this.lblTestCourse2Title.Name = "lblTestCourse2Title";
             this.lblTestCourse2Title.Size = new System.Drawing.Size(112, 21);
             this.lblTestCourse2Title.TabIndex = 20;
@@ -775,7 +778,7 @@
             // lblTestCourse7Title
             // 
             this.lblTestCourse7Title.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblTestCourse7Title.Location = new System.Drawing.Point(21, 252);
+            this.lblTestCourse7Title.Location = new System.Drawing.Point(20, 241);
             this.lblTestCourse7Title.Name = "lblTestCourse7Title";
             this.lblTestCourse7Title.Size = new System.Drawing.Size(112, 21);
             this.lblTestCourse7Title.TabIndex = 21;
@@ -785,7 +788,7 @@
             // lblTestCourse4Title
             // 
             this.lblTestCourse4Title.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblTestCourse4Title.Location = new System.Drawing.Point(21, 171);
+            this.lblTestCourse4Title.Location = new System.Drawing.Point(20, 160);
             this.lblTestCourse4Title.Name = "lblTestCourse4Title";
             this.lblTestCourse4Title.Size = new System.Drawing.Size(112, 21);
             this.lblTestCourse4Title.TabIndex = 22;
@@ -795,7 +798,7 @@
             // lblTestCourse1Title
             // 
             this.lblTestCourse1Title.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblTestCourse1Title.Location = new System.Drawing.Point(21, 88);
+            this.lblTestCourse1Title.Location = new System.Drawing.Point(20, 77);
             this.lblTestCourse1Title.Name = "lblTestCourse1Title";
             this.lblTestCourse1Title.Size = new System.Drawing.Size(112, 21);
             this.lblTestCourse1Title.TabIndex = 23;
@@ -804,7 +807,7 @@
             // 
             // tbxTestScore9
             // 
-            this.tbxTestScore9.Location = new System.Drawing.Point(150, 307);
+            this.tbxTestScore9.Location = new System.Drawing.Point(149, 296);
             this.tbxTestScore9.Name = "tbxTestScore9";
             this.tbxTestScore9.Size = new System.Drawing.Size(100, 21);
             this.tbxTestScore9.TabIndex = 29;
@@ -812,7 +815,7 @@
             // 
             // tbxTestScore6
             // 
-            this.tbxTestScore6.Location = new System.Drawing.Point(150, 226);
+            this.tbxTestScore6.Location = new System.Drawing.Point(149, 215);
             this.tbxTestScore6.Name = "tbxTestScore6";
             this.tbxTestScore6.Size = new System.Drawing.Size(100, 21);
             this.tbxTestScore6.TabIndex = 31;
@@ -830,7 +833,7 @@
             // 
             // tbxTestScore8
             // 
-            this.tbxTestScore8.Location = new System.Drawing.Point(150, 280);
+            this.tbxTestScore8.Location = new System.Drawing.Point(149, 269);
             this.tbxTestScore8.Name = "tbxTestScore8";
             this.tbxTestScore8.Size = new System.Drawing.Size(100, 21);
             this.tbxTestScore8.TabIndex = 30;
@@ -838,7 +841,7 @@
             // 
             // tbxTestScore5
             // 
-            this.tbxTestScore5.Location = new System.Drawing.Point(150, 199);
+            this.tbxTestScore5.Location = new System.Drawing.Point(149, 188);
             this.tbxTestScore5.Name = "tbxTestScore5";
             this.tbxTestScore5.Size = new System.Drawing.Size(100, 21);
             this.tbxTestScore5.TabIndex = 33;
@@ -846,7 +849,7 @@
             // 
             // tbxTestScore3
             // 
-            this.tbxTestScore3.Location = new System.Drawing.Point(150, 143);
+            this.tbxTestScore3.Location = new System.Drawing.Point(149, 132);
             this.tbxTestScore3.Name = "tbxTestScore3";
             this.tbxTestScore3.Size = new System.Drawing.Size(100, 21);
             this.tbxTestScore3.TabIndex = 28;
@@ -854,7 +857,7 @@
             // 
             // tbxTestScore7
             // 
-            this.tbxTestScore7.Location = new System.Drawing.Point(150, 253);
+            this.tbxTestScore7.Location = new System.Drawing.Point(149, 242);
             this.tbxTestScore7.Name = "tbxTestScore7";
             this.tbxTestScore7.Size = new System.Drawing.Size(100, 21);
             this.tbxTestScore7.TabIndex = 27;
@@ -862,7 +865,7 @@
             // 
             // tbxTestScore4
             // 
-            this.tbxTestScore4.Location = new System.Drawing.Point(150, 172);
+            this.tbxTestScore4.Location = new System.Drawing.Point(149, 161);
             this.tbxTestScore4.Name = "tbxTestScore4";
             this.tbxTestScore4.Size = new System.Drawing.Size(100, 21);
             this.tbxTestScore4.TabIndex = 26;
@@ -870,7 +873,7 @@
             // 
             // tbxTestScore2
             // 
-            this.tbxTestScore2.Location = new System.Drawing.Point(150, 116);
+            this.tbxTestScore2.Location = new System.Drawing.Point(149, 105);
             this.tbxTestScore2.Name = "tbxTestScore2";
             this.tbxTestScore2.Size = new System.Drawing.Size(100, 21);
             this.tbxTestScore2.TabIndex = 25;
@@ -878,7 +881,7 @@
             // 
             // tbxTestScore1
             // 
-            this.tbxTestScore1.Location = new System.Drawing.Point(150, 89);
+            this.tbxTestScore1.Location = new System.Drawing.Point(149, 78);
             this.tbxTestScore1.Name = "tbxTestScore1";
             this.tbxTestScore1.Size = new System.Drawing.Size(100, 21);
             this.tbxTestScore1.TabIndex = 24;
@@ -896,7 +899,7 @@
             this.lblTestAverage.BackColor = System.Drawing.Color.White;
             this.lblTestAverage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblTestAverage.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblTestAverage.Location = new System.Drawing.Point(478, 307);
+            this.lblTestAverage.Location = new System.Drawing.Point(477, 296);
             this.lblTestAverage.Name = "lblTestAverage";
             this.lblTestAverage.Size = new System.Drawing.Size(100, 21);
             this.lblTestAverage.TabIndex = 39;
@@ -905,7 +908,7 @@
             // lblTestAverageTitle
             // 
             this.lblTestAverageTitle.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblTestAverageTitle.Location = new System.Drawing.Point(349, 306);
+            this.lblTestAverageTitle.Location = new System.Drawing.Point(348, 295);
             this.lblTestAverageTitle.Name = "lblTestAverageTitle";
             this.lblTestAverageTitle.Size = new System.Drawing.Size(112, 21);
             this.lblTestAverageTitle.TabIndex = 36;
@@ -917,7 +920,7 @@
             this.lblTestTotalCount.BackColor = System.Drawing.Color.White;
             this.lblTestTotalCount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblTestTotalCount.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblTestTotalCount.Location = new System.Drawing.Point(478, 282);
+            this.lblTestTotalCount.Location = new System.Drawing.Point(477, 271);
             this.lblTestTotalCount.Name = "lblTestTotalCount";
             this.lblTestTotalCount.Size = new System.Drawing.Size(100, 21);
             this.lblTestTotalCount.TabIndex = 34;
@@ -926,7 +929,7 @@
             // lblTestTotalCountTitle
             // 
             this.lblTestTotalCountTitle.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblTestTotalCountTitle.Location = new System.Drawing.Point(349, 281);
+            this.lblTestTotalCountTitle.Location = new System.Drawing.Point(348, 270);
             this.lblTestTotalCountTitle.Name = "lblTestTotalCountTitle";
             this.lblTestTotalCountTitle.Size = new System.Drawing.Size(112, 21);
             this.lblTestTotalCountTitle.TabIndex = 35;
@@ -960,7 +963,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(691, 445);
             this.Controls.Add(this.tabMain);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormManager";
             this.Text = "학생관리";
             this.tabMain.ResumeLayout(false);
@@ -983,7 +986,7 @@
         private System.Windows.Forms.TextBox tbxName;
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.ListBox lbxArray;
-        private System.Windows.Forms.TextBox tbxBirtYear;
+        private System.Windows.Forms.TextBox tbxBirthYear;
         private System.Windows.Forms.Label lblBirth;
         private System.Windows.Forms.TextBox tbxBirthMonth;
         private System.Windows.Forms.Label lblBirthYear;
