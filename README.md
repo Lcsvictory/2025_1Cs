@@ -70,4 +70,18 @@ var 타입은 변수 선언과 동시에 초기화 해야한다.
 선언만 하는건 불가능.
 지역변수로만 사용가능.
 
+week06
+---
+
+
+### List자료형
+- arraylist가 원형
+- .Add(object), .insert()
+- .Remove(object)특정 객체 삭제, .RemoveAt(index)특정 인덱스 삭제
+- .Clear()
+- .Length()
+
+### Class
+- 값(변수) + 기능(메소드)
+- class변수 = 정적변수 (static)
 
