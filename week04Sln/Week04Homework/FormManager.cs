@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace Week04Homework
 {
@@ -230,17 +231,17 @@ namespace Week04Homework
                 if (target != null && target.Name == "tbxDepartmentName")
                 {
                     btnRegisterDepartment_Click(sender, e);
-                }else
+                } else
                 {
                     btnRegisterProfessor_Click(sender, e);
                 }
-                
 
-                
+
+
             }
         }
 
-        
+
 
         private void btnRegisterProfessor_Click(object sender, EventArgs e)
         {
@@ -322,7 +323,7 @@ namespace Week04Homework
             }
 
             lbxProfessor.SelectedIndex = -1;
-            
+
         }
 
         private void cmbDepartment_SelectedIndexChanged(object sender, EventArgs e)
@@ -345,7 +346,7 @@ namespace Week04Homework
                     cmbAdvisor.Items.Add(prof);
                 }
             }
-            
+
         }
 
         private void btnNew_Click(object sender, EventArgs e)
@@ -366,8 +367,11 @@ namespace Week04Homework
             cmbClass.SelectedIndex = -1;
             cmbRegStatus.SelectedIndex = -1;
             tbxAddress.Text = "";
-            tbxAddress.Text = "";
+            tbxContact.Text = "";
             tbxNumber.ReadOnly = false;
+            selectedStudent = null;
+            btnRegister.Text = "등록";
+            lbxDictionary.SelectedIndex = -1;
         }
 
 
@@ -383,27 +387,14 @@ namespace Week04Homework
             }
         }
 
-        private void RegisterStudent()
+
+        private Student makeStudent(string number)
         {
-            var number = tbxNumber.Text.Trim();
             var name = tbxName.Text.Trim();
-            if (string.IsNullOrEmpty(name)) {
-                MessageBox.Show("학번을 써주세요");
-                tbxNumber.Focus();
-                return;
-                //학번 이름 구분해서 출력
-            }
-            if (string.IsNullOrEmpty(number))
+            if (string.IsNullOrEmpty(name) || name.Length < 2)
             {
-                MessageBox.Show("이름을 써주세요");
                 tbxName.Focus();
-                return;
-            }
-            if (true == students.ContainsKey(number))
-            {
-                MessageBox.Show("동일한 학번이 존재합니다.");
-                tbxNumber.Focus();
-                return;
+                return null;
             }
             Student student = new Student();
             student.Number = number;
@@ -413,49 +404,44 @@ namespace Week04Homework
             int BirthYear, BirthMonth;//, BirthDay;
             if (int.TryParse(tbxBirthYear.Text, out BirthYear))
             {
-                if (BirthYear <= 1960)
+                if (BirthYear < 1900 || BirthYear > 9000)
                 {
-                    MessageBox.Show("올바른 년도를 입력해주세요.");
                     tbxBirthYear.Focus();
-                    return;
+                    return null;
                 }
-            } else
+            }
+            else
             {
-                MessageBox.Show("년도를 입력하세요.");
                 tbxBirthYear.Focus();
-                return;
+                return null;
             }
 
             if (int.TryParse(tbxBirthMonth.Text, out BirthMonth))
             {
                 if (BirthMonth < 1 || BirthMonth > 12)
                 {
-                    MessageBox.Show("올바른 월을 입력해주세요.");
                     tbxBirthMonth.Focus();
-                    return;
+                    return null;
                 }
             }
             else
             {
-                MessageBox.Show("월을 입력하세요.");
                 tbxBirthMonth.Focus();
-                return;
+                return null;
             }
 
             if (int.TryParse(tbxBirthDay.Text, out int BirthDay))
             {
                 if (BirthDay < 1 || BirthDay > 31)
                 {
-                    MessageBox.Show("올바른 일을 입력해주세요.");
                     tbxBirthDay.Focus();
-                    return;
+                    return null;
                 }
             }
             else
             {
-                MessageBox.Show("일을 입력하세요.");
                 tbxBirthDay.Focus();
-                return;
+                return null;
             }
 
 
@@ -466,25 +452,279 @@ namespace Week04Homework
                 //cmbDepartment.Focus();
                 //return;
                 student.DepartmentCode = null;
-            }else
+            }
+            else
             {
                 student.DepartmentCode = (cmbDepartment.SelectedItem as Department).Code;
             }
-            students[number] = student;
-            //students.Add(number, student); 키 중복시 에러
-            lbxDictionary.Items.Add(student);
+
+            if (cmbAdvisor.SelectedIndex < 0)
+            {
+                student.AdvisorNumber = null;
+            }
+            else
+            {
+                Professor p1 = cmbAdvisor.SelectedItem as Professor;
+                if (p1 != null)
+                {
+                    student.AdvisorNumber = p1.Number;
+                }
+
+            }
+
+            if (cmbYear.SelectedIndex < 0)
+            {
+                cmbYear.Focus();
+                return null;
+            }
+            else
+            {
+                if (int.TryParse(cmbYear.SelectedItem.ToString(), out int temp1))
+                {
+                    student.Year = temp1;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+
+            if (cmbClass.SelectedIndex < 0)
+            {
+                cmbClass.Focus();
+                return null;
+            }
+            else
+            {
+                student.Class = cmbClass.SelectedItem.ToString();
+            }
+
+            if (cmbRegStatus.SelectedIndex < 0)
+            {
+                cmbRegStatus.Focus();
+                return null;
+            }
+            else
+            {
+                student.RegStatus = cmbRegStatus.SelectedItem.ToString();
+            }
+
+            if (string.IsNullOrEmpty(tbxAddress.Text))
+            {
+                tbxAddress.Focus();
+                return null;
+            }
+            else
+            {
+                student.Address = tbxAddress.Text;
+            }
+
+            if (string.IsNullOrEmpty(tbxContact.Text))
+            {
+                tbxContact.Focus();
+                return null;
+            }
+            else
+            {
+                student.Contact = tbxContact.Text;
+            }
+            return student;
         }
+
+        private bool makeUpdatestudent(Student student)
+        {
+            var name = tbxName.Text.Trim();
+            if (string.IsNullOrEmpty(name) || name.Length < 2)
+            {
+                tbxName.Focus();
+                return false;
+            }
+            student.Name = name;
+
+
+            int BirthYear, BirthMonth;//, BirthDay;
+            if (int.TryParse(tbxBirthYear.Text, out BirthYear))
+            {
+                if (BirthYear < 1900 || BirthYear > 9000)
+                {
+                    tbxBirthYear.Focus();
+                    return false;
+                }
+            }
+            else
+            {
+                tbxBirthYear.Focus();
+                return false;
+            }
+
+            if (int.TryParse(tbxBirthMonth.Text, out BirthMonth))
+            {
+                if (BirthMonth < 1 || BirthMonth > 12)
+                {
+                    tbxBirthMonth.Focus();
+                    return false;
+                }
+            }
+            else
+            {
+                tbxBirthMonth.Focus();
+                return false;
+            }
+
+            if (int.TryParse(tbxBirthDay.Text, out int BirthDay))
+            {
+                if (BirthDay < 1 || BirthDay > 31)
+                {
+                    tbxBirthDay.Focus();
+                    return false;
+                }
+            }
+            else
+            {
+                tbxBirthDay.Focus();
+                return false;
+            }
+
+
+            student.BirthInfo = new DateTime(BirthYear, BirthMonth, BirthDay);
+
+            if (cmbDepartment.SelectedIndex < 0)
+            {
+                student.DepartmentCode = null;
+            }
+            else
+            {
+                student.DepartmentCode = (cmbDepartment.SelectedItem as Department).Code;
+            }
+
+            if (cmbAdvisor.SelectedIndex < 0)
+            {
+                student.AdvisorNumber = null;
+            }
+            else
+            {
+                Professor p1 = cmbAdvisor.SelectedItem as Professor;
+                if (p1 != null)
+                {
+                    student.AdvisorNumber = p1.Number;
+                }
+
+            }
+
+            if (cmbYear.SelectedIndex < 0)
+            {
+                cmbYear.Focus();
+                return false;
+            }
+            else
+            {
+                if (int.TryParse(cmbYear.SelectedItem.ToString(), out int temp1))
+                {
+                    student.Year = temp1;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+            if (cmbClass.SelectedIndex < 0)
+            {
+                cmbClass.Focus();
+                return false;
+            }
+            else
+            {
+                student.Class = cmbClass.SelectedItem.ToString();
+            }
+
+            if (cmbRegStatus.SelectedIndex < 0)
+            {
+                cmbRegStatus.Focus();
+                return false;
+            }
+            else
+            {
+                student.RegStatus = cmbRegStatus.SelectedItem.ToString();
+            }
+
+            if (string.IsNullOrEmpty(tbxAddress.Text))
+            {
+                tbxAddress.Focus();
+                return false;
+            }
+            else
+            {
+                student.Address = tbxAddress.Text;
+            }
+
+            if (string.IsNullOrEmpty(tbxContact.Text))
+            {
+                tbxContact.Focus();
+                return false;
+            }
+            else
+            {
+                student.Contact = tbxContact.Text;
+            }
+            return true;
+        }
+
+
+        private void RegisterStudent()
+        {
+            
+            var number = tbxNumber.Text.Trim();
+
+            if (string.IsNullOrEmpty(number) || number.Length != 8)
+            {
+                tbxNumber.Focus();
+                return;
+            }
+            if (students.ContainsKey(number))
+            {
+                MessageBox.Show("동일한 학번이 존재합니다.");
+                tbxNumber.Focus();
+                return;
+            }
+
+            Student st1 = makeStudent(number); 
+            if (st1 == null)
+            {
+                MessageBox.Show("학생정보에 올바르지 않은 값이 포함되어 있습니다.");
+                return;
+            }
+            students[number] = st1;
+            //students.Add(number, student); 키 중복시 에러
+            lbxDictionary.Items.Add(st1);
+        }
+
 
         private void UpdateStudent()
         {
-            throw new NotImplementedException();
+            //수정은 학번을 고칠 수 없다.
+            //학번을 제외한 모든 사항은 위의 RegisterStudent()와 동일하게 진행
+            //한다.
+            //모든 사항의 확인 및 수정이 끝나면
+            //수정완료 메세지를 띄운 후
+            //화면을 초기화 상태로 만든다.
+
+
+            if (makeUpdatestudent(selectedStudent))
+            {
+                MessageBox.Show("학생정보를 수정했습니다.");
+                ClearStudentInfo();
+            } else
+            {
+                MessageBox.Show("학생정보 수정과정에서 문제가 발생하였습니다.");
+            }
+
+
+
         }
 
         private void lbxDictionary_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-            ClearStudentInfo();
-            //btnNew_Click(sender, EventArgs.Empty);
 
             if (lbxDictionary.SelectedIndex < 0)
             {
@@ -506,11 +746,82 @@ namespace Week04Homework
             tbxBirthYear.Text = student.BirthInfo.Year.ToString();
             tbxBirthMonth.Text = student.BirthInfo.Month.ToString();
             tbxBirthDay.Text = student.BirthInfo.Day.ToString();
+
+            for (int i = 0; i < cmbDepartment.Items.Count; i++)
+            {
+                if (student.DepartmentCode == (cmbDepartment.Items[i] as Department).Code)
+                {
+                    cmbDepartment.SelectedIndex = i;
+                    break;
+                }
+            }
+
+            for (int i = 0; i < cmbAdvisor.Items.Count; i++)
+            {
+                if (student.AdvisorNumber == (cmbAdvisor.Items[i] as Professor).Number)
+                {
+                    cmbAdvisor.SelectedIndex = i;
+                    break;
+                }
+            }
+            //지도교수,학년,반,재적상태,주소,연락처의 정보를 가져와 설정한다.
+
+            for (int i = 0; i < cmbYear.Items.Count; i++)
+            {
+                if (student.Year == int.Parse(cmbYear.Items[i].ToString()))
+                {
+                    cmbYear.SelectedIndex = i;
+                    break;
+                }
+            }
+            for (int i = 0; i < cmbClass.Items.Count; i++)
+            {
+                if (student.Class == cmbClass.Items[i].ToString())
+                {
+                    cmbClass.SelectedIndex = i;
+                    break;
+                }
+            }
+            for (int i = 0; i < cmbRegStatus.Items.Count; i++)
+            {
+                if (student.RegStatus == cmbRegStatus.Items[i].ToString())
+                {
+                    cmbRegStatus.SelectedIndex = i;
+                    break;
+                }
+            }
+            tbxAddress.Text = student.Address.ToString();
+            tbxContact.Text = student.Contact.ToString();
+
+            btnRegister.Text = "수정";
         }
 
         private void btnTestSearchStudent_Click(object sender, EventArgs e)
         {
-            selectedStudent = SearchStudentByNumber(tbxTestNumber.Text);
+            ClearTestScoreInfo();
+            var number = tbxTestNumber.Text.Trim();
+            
+            
+
+            if (string.IsNullOrEmpty(number) || number.Length != 8)
+            {
+                tbxTestNumber.Focus();
+                return;
+            }
+
+
+            selectedStudent = SearchStudentByNumber(number);
+
+            if (selectedStudent == null)
+            {
+                MessageBox.Show("검색한 학번은 존재하지 않습니다");
+                tbxTestNumber.Focus();
+                return;
+            }
+
+            lblTestName.Text = selectedStudent.Name;
+
+            
 
         }
 
@@ -523,6 +834,18 @@ namespace Week04Homework
             {
                 return null;
             }
+        }
+   
+        private void ClearTestScoreInfo()
+        {
+            //tbxTestNumber.Text = string.Empty;
+            lblTestName.Text = string.Empty;
+            foreach (var v in tbxTestScores)
+            {
+                v.Text = string.Empty;
+            }
+            lblTestTotalCount.Text = string.Empty;
+            lblTestAverage.Text = string.Empty;
         }
     }
 }
