@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Department.cs" />
+    <Compile Include="FIleIO.cs" />
     <Compile Include="FormManager.cs">
       <SubType>Form</SubType>
     </Compile>

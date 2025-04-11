@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Week04Homework
 {
-    class Department : Object
+    class Department
     {
         public string Code;
         public string Name;
@@ -21,6 +21,12 @@ namespace Week04Homework
         public override string ToString()
         {
             return $"[{this.Code}] {this.Name}";
+        }
+
+
+        public string FileWrite()
+        {
+            return $"{this.Code}-=-{this.Name}";
         }
     }
 }

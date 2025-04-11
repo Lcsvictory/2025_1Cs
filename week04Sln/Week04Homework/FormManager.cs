@@ -847,5 +847,12 @@ namespace Week04Homework
             lblTestTotalCount.Text = string.Empty;
             lblTestAverage.Text = string.Empty;
         }
+
+        private void btnFileTest_Click(object sender, EventArgs e)
+        {
+            //test
+            FIleIO fIO = new FIleIO("departmentPath");
+            fIO.Write("12342-=-기계공학");
+        }
     }
 }

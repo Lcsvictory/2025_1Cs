@@ -12,11 +12,24 @@ namespace Week04Homework
         public static int MAX_GRADE_COUNT = 9;
 
         public string StudentNumber;
-        public List<double> Scores = new List<double>();
+        //public List<double> Scores = new List<double>();
+        public Dictionary<string, double> Scores = new Dictionary<string, double>();
 
         public override string ToString()
         {
             return base.ToString();
+        }
+
+        public string FileWrite()
+        {
+            string tempStr = string.Empty;
+            tempStr += this.StudentNumber + "-=-";
+            foreach (var k in Scores.Keys)
+            {
+                tempStr += k + ":";
+                tempStr += Scores[k].ToString() + ",";
+            }
+            return tempStr;
         }
     }
 }
