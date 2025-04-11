@@ -902,6 +902,7 @@ namespace Week04Homework
             if (string.IsNullOrEmpty(number) || number.Length != 8)
             {
                 tbxTestNumber.Focus();
+                MessageBox.Show("올바른 학번을 입력하세요.");
                 return;
             }
 
