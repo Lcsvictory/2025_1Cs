@@ -19,13 +19,15 @@ namespace Week04Homework
         public string Address;
         public string Contact;
 
-        //public Student()
-        //{
 
-        //}
         public override string ToString()
         {
             return $"[{this.Number}]{this.Name}";
+        }
+
+        public string FileWrite()
+        {
+            return $"{this.Number}-=-{this.Name}-=-{this.BirthInfo.ToString("d")}-=-{this.DepartmentCode}-=-{this.AdvisorNumber}-=-{this.Year}-=-{this.Class}-=-{this.RegStatus}-=-{this.Address}-=-{this.Contact}";
         }
     }
 }

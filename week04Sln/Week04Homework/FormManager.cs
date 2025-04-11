@@ -5,6 +5,8 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
+using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -20,6 +22,11 @@ namespace Week04Homework
         List<Grade> testGrades;
         TextBox[] tbxTestScores;
 
+        FileIO dp;
+        FileIO st;
+        FileIO pr;
+        FileIO gr;
+        
 
         public FormManager()
         {
@@ -40,6 +47,8 @@ namespace Week04Homework
                 tbxTestScore9,
             };
 
+            
+
             for (int i = 1; i < 5; i++)
             {
                 cmbYear.Items.Add(i);
@@ -53,6 +62,14 @@ namespace Week04Homework
             cmbRegStatus.Items.Add("휴학");
             cmbRegStatus.Items.Add("자퇴");
 
+            //Read() = txt파일에서 정보 읽어와서 문자열로 리턴함.
+            dp = new FileIO(FileIO.departmentPath);
+            registerDepartment(dp.Read());
+            st = new FileIO(FileIO.studentPath);
+            registerStudent(st.Read());
+            pr = new FileIO(FileIO.professorPath);
+            registerProfessor(pr.Read());
+            gr = new FileIO(FileIO.gradePath);
         }
 
         private void keyDown(object sender, KeyEventArgs e)
@@ -66,6 +83,82 @@ namespace Week04Homework
             {
                 tbxDepartmentName_KeyDown(sender, e);
             }
+        }
+
+        //파일에서 읽어온 문자열을 실제 타입으로 변환하는메소드
+        private void registerDepartment(List<string> l1)
+        {
+            int index = 0;
+            foreach (string line in l1)
+            {
+                Department dept = new Department();
+                string[] items = line.Split(new string[] {"-=-"}, StringSplitOptions.RemoveEmptyEntries);//빈 문자열은 가져오지 마라.
+                
+                Type type = dept.GetType(); //Student타입을 가져옴.
+                FieldInfo[] fields = type.GetFields(); //이 클래스에 존재하는 필드를 가져옴.
+
+                if (items.Length == fields.Length)
+                {
+                    dept.Code = items[0];
+                    dept.Name = items[1];
+                }
+                departments[index] = dept;
+                lbxDepartment.Items.Add(dept);
+                index++;
+            }
+
+        }
+
+        //파일에서 읽어온 문자열을 실제 타입으로 변환하는메소드
+        private void registerStudent(List<string> l1)
+        {
+            foreach (string line in l1)
+            {
+                Student student = new Student();
+                string[] items = line.Split(new string[] { "-=-" }, StringSplitOptions.RemoveEmptyEntries);//빈 문자열은 가져오지 마라.
+                Type type = student.GetType();
+                FieldInfo[] fields = type.GetFields();
+                if (items.Length == fields.Length)
+                {
+                    student.Number = items[0];
+                    student.Name = items[1];
+                    student.BirthInfo = DateTime.Parse(items[2]);
+                    student.DepartmentCode = items[3];
+                    student.AdvisorNumber = items[4];
+                    student.Year = int.Parse(items[5]);
+                    student.Class = items[6];
+                    student.RegStatus = items[7];
+                    student.Address = items[8];
+                    student.Contact = items[9];
+                    
+                }
+                Console.WriteLine(student.Contact);
+                students[student.Number] = student;
+                lbxDictionary.Items.Add(student);
+            }
+
+        }
+
+        //파일에서 읽어온 문자열을 실제 타입으로 변환하는메소드
+        private void registerProfessor(List<string> l1)
+        {
+            foreach (string line in l1)
+            {
+                Professor prof = new Professor();
+                string[] items = line.Split(new string[] { "-=-" }, StringSplitOptions.RemoveEmptyEntries);//빈 문자열은 가져오지 마라.
+                Type type = prof.GetType();
+                FieldInfo[] fields = type.GetFields();
+                if (items.Length == fields.Length)
+                {
+                    prof.DepartmentCode = items[0];
+                    prof.Number = items[1];
+                    prof.Name = items[2];
+
+                }
+                professors.Add(prof);
+                lbxProfessor.Items.Add(prof);
+            }
+
         }
 
         private void btnRegisterDepartment_Click(object sender, EventArgs e)
@@ -109,16 +202,12 @@ namespace Week04Homework
             }
             Department dept = new Department();
             departments[index] = dept;
-            //departments.Append(dept);
-
-            //Department dept = new Department(tbxDepartmentCode.Text, tbxDepartmentName.Text);
+            
             dept.Code = tbxDepartmentCode.Text;
             dept.Name = tbxDepartmentName.Text;
 
             lbxDepartment.Items.Add(dept);
-            //lbxDepartment.Items.Add(dept.Code);
-            //lbxDepartment.Items.Add(dept.Name);
-            //lbxDepartment.Items.Add($"[{dept.Code}] {dept.Name}");
+
 
             tbxDepartmentCode.Text = "";
             tbxDepartmentCode.Focus();
@@ -162,18 +251,22 @@ namespace Week04Homework
                     break;
                 case 1:
                     cmbProfessorDepartment.Items.Clear();
+                    lbxProfessor.Items.Clear();
+                    cmbProfessorDepartment.SelectedIndex = -1;
                     foreach (var dept in departments)
                     {
                         if (dept != null)
                         {
+                            Console.WriteLine("tabMain_SelectedIndexChanged() : " + dept);
                             cmbProfessorDepartment.Items.Add(dept);
                         }
                     }
-                    cmbProfessorDepartment.SelectedIndex = -1;
-                    lbxProfessor.Items.Clear();
+                    
                     break;
                 case 2:
                     cmbDepartment.Items.Clear();
+                    cmbDepartment.SelectedIndex = -1;
+                    cmbAdvisor.SelectedIndex = -1;
                     foreach (var dept in departments)
                     {
                         if (dept != null)
@@ -181,8 +274,7 @@ namespace Week04Homework
                             cmbDepartment.Items.Add(dept);
                         }
                     }
-                    cmbDepartment.SelectedIndex = -1;
-                    cmbAdvisor.SelectedIndex = -1;
+                    
                     break;
                 default:
                     break;
@@ -191,11 +283,13 @@ namespace Week04Homework
 
         private void cmbProfessorDepartment_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (cmbProfessorDepartment.SelectedIndex < 0)
+            {
+                return;
+            }
             lbxProfessor.Items.Clear();
 
-            //as == 타입변환.
-            //형변환이 안되면 null return;
-            //is == 타입검사.
+
             var dept = cmbProfessorDepartment.SelectedItem as Department;
 
             if (dept != null)
@@ -254,7 +348,7 @@ namespace Week04Homework
             if (cmbProfessorDepartment.SelectedIndex < 0)
             {
                 MessageBox.Show("소속학과를 선택하세요.");
-                cmbProfessorDepartment.Focus();
+                //cmbProfessorDepartment.Focus();
                 return;
             }
             if (string.IsNullOrEmpty(tbxProfessorNumber.Text))
@@ -713,6 +807,8 @@ namespace Week04Homework
             if (makeUpdatestudent(selectedStudent))
             {
                 MessageBox.Show("학생정보를 수정했습니다.");
+                lbxDictionary.Items.Remove(selectedStudent);
+                lbxDictionary.Items.Add(selectedStudent);
                 ClearStudentInfo();
             } else
             {
@@ -850,9 +946,17 @@ namespace Week04Homework
 
         private void btnFileTest_Click(object sender, EventArgs e)
         {
-            //test
-            FIleIO fIO = new FIleIO("departmentPath");
-            fIO.Write("12342-=-기계공학");
+            
         }
+
+        private void FormManager_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            
+            dp.Write(departments);
+            st.Write(students);
+            pr.Write(professors);
+        }
+
+       
     }
 }

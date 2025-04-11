@@ -79,6 +79,7 @@
             this.tpgStudent = new System.Windows.Forms.TabPage();
             this.cmbAdvisor = new System.Windows.Forms.ComboBox();
             this.tpgTestScore = new System.Windows.Forms.TabPage();
+            this.btnFileTest = new System.Windows.Forms.Button();
             this.btnTestRegScore = new System.Windows.Forms.Button();
             this.btnTestSearchStudent = new System.Windows.Forms.Button();
             this.lblTestCourse9Title = new System.Windows.Forms.Label();
@@ -107,7 +108,6 @@
             this.lblTestTotalCountTitle = new System.Windows.Forms.Label();
             this.lblTestName = new System.Windows.Forms.Label();
             this.lblTestNameTitle = new System.Windows.Forms.Label();
-            this.btnFileTest = new System.Windows.Forms.Button();
             this.tabMain.SuspendLayout();
             this.tpgDepartment.SuspendLayout();
             this.tpgProfessor.SuspendLayout();
@@ -375,7 +375,7 @@
             this.tabMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabMain.ItemSize = new System.Drawing.Size(64, 30);
             this.tabMain.Location = new System.Drawing.Point(0, 0);
-            this.tabMain.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabMain.Margin = new System.Windows.Forms.Padding(4);
             this.tabMain.Name = "tabMain";
             this.tabMain.SelectedIndex = 0;
             this.tabMain.Size = new System.Drawing.Size(987, 668);
@@ -392,9 +392,9 @@
             this.tpgDepartment.Controls.Add(this.tbxDepartmentName);
             this.tpgDepartment.Controls.Add(this.label2);
             this.tpgDepartment.Location = new System.Drawing.Point(4, 34);
-            this.tpgDepartment.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tpgDepartment.Margin = new System.Windows.Forms.Padding(4);
             this.tpgDepartment.Name = "tpgDepartment";
-            this.tpgDepartment.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tpgDepartment.Padding = new System.Windows.Forms.Padding(4);
             this.tpgDepartment.Size = new System.Drawing.Size(979, 630);
             this.tpgDepartment.TabIndex = 0;
             this.tpgDepartment.Text = "학과정보";
@@ -476,9 +476,9 @@
             this.tpgProfessor.Controls.Add(this.tbxProfessorName);
             this.tpgProfessor.Controls.Add(this.lblProfessorName);
             this.tpgProfessor.Location = new System.Drawing.Point(4, 34);
-            this.tpgProfessor.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tpgProfessor.Margin = new System.Windows.Forms.Padding(4);
             this.tpgProfessor.Name = "tpgProfessor";
-            this.tpgProfessor.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tpgProfessor.Padding = new System.Windows.Forms.Padding(4);
             this.tpgProfessor.Size = new System.Drawing.Size(979, 630);
             this.tpgProfessor.TabIndex = 1;
             this.tpgProfessor.Text = "교수정보";
@@ -493,6 +493,7 @@
             this.cmbProfessorDepartment.Size = new System.Drawing.Size(304, 26);
             this.cmbProfessorDepartment.TabIndex = 16;
             this.cmbProfessorDepartment.SelectedIndexChanged += new System.EventHandler(this.cmbProfessorDepartment_SelectedIndexChanged);
+            //this.cmbProfessorDepartment.SelectionChangeCommitted += new System.EventHandler(this.cmbProfessorDepartment_SelectionChangeCommitted);
             // 
             // label5
             // 
@@ -600,9 +601,9 @@
             this.tpgStudent.Controls.Add(this.lblAddress);
             this.tpgStudent.Controls.Add(this.lblContact);
             this.tpgStudent.Location = new System.Drawing.Point(4, 34);
-            this.tpgStudent.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tpgStudent.Margin = new System.Windows.Forms.Padding(4);
             this.tpgStudent.Name = "tpgStudent";
-            this.tpgStudent.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tpgStudent.Padding = new System.Windows.Forms.Padding(4);
             this.tpgStudent.Size = new System.Drawing.Size(979, 630);
             this.tpgStudent.TabIndex = 2;
             this.tpgStudent.Text = "학생정보";
@@ -649,18 +650,28 @@
             this.tpgTestScore.Controls.Add(this.lblTestName);
             this.tpgTestScore.Controls.Add(this.lblTestNameTitle);
             this.tpgTestScore.Location = new System.Drawing.Point(4, 34);
-            this.tpgTestScore.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tpgTestScore.Margin = new System.Windows.Forms.Padding(4);
             this.tpgTestScore.Name = "tpgTestScore";
-            this.tpgTestScore.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tpgTestScore.Padding = new System.Windows.Forms.Padding(4);
             this.tpgTestScore.Size = new System.Drawing.Size(979, 630);
             this.tpgTestScore.TabIndex = 3;
             this.tpgTestScore.Text = "성적처리(TEST)";
             this.tpgTestScore.UseVisualStyleBackColor = true;
             // 
+            // btnFileTest
+            // 
+            this.btnFileTest.Location = new System.Drawing.Point(699, 288);
+            this.btnFileTest.Name = "btnFileTest";
+            this.btnFileTest.Size = new System.Drawing.Size(163, 37);
+            this.btnFileTest.TabIndex = 42;
+            this.btnFileTest.Text = "파일입출력테스트";
+            this.btnFileTest.UseVisualStyleBackColor = true;
+            this.btnFileTest.Click += new System.EventHandler(this.btnFileTest_Click);
+            // 
             // btnTestRegScore
             // 
             this.btnTestRegScore.Location = new System.Drawing.Point(380, 402);
-            this.btnTestRegScore.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnTestRegScore.Margin = new System.Windows.Forms.Padding(4);
             this.btnTestRegScore.Name = "btnTestRegScore";
             this.btnTestRegScore.Size = new System.Drawing.Size(94, 72);
             this.btnTestRegScore.TabIndex = 41;
@@ -670,7 +681,7 @@
             // btnTestSearchStudent
             // 
             this.btnTestSearchStudent.Location = new System.Drawing.Point(381, 32);
-            this.btnTestSearchStudent.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnTestSearchStudent.Margin = new System.Windows.Forms.Padding(4);
             this.btnTestSearchStudent.Name = "btnTestSearchStudent";
             this.btnTestSearchStudent.Size = new System.Drawing.Size(94, 72);
             this.btnTestSearchStudent.TabIndex = 40;
@@ -780,7 +791,7 @@
             // tbxTestScore9
             // 
             this.tbxTestScore9.Location = new System.Drawing.Point(213, 444);
-            this.tbxTestScore9.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbxTestScore9.Margin = new System.Windows.Forms.Padding(4);
             this.tbxTestScore9.Name = "tbxTestScore9";
             this.tbxTestScore9.Size = new System.Drawing.Size(141, 28);
             this.tbxTestScore9.TabIndex = 29;
@@ -789,7 +800,7 @@
             // tbxTestScore6
             // 
             this.tbxTestScore6.Location = new System.Drawing.Point(213, 322);
-            this.tbxTestScore6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbxTestScore6.Margin = new System.Windows.Forms.Padding(4);
             this.tbxTestScore6.Name = "tbxTestScore6";
             this.tbxTestScore6.Size = new System.Drawing.Size(141, 28);
             this.tbxTestScore6.TabIndex = 31;
@@ -809,7 +820,7 @@
             // tbxTestScore8
             // 
             this.tbxTestScore8.Location = new System.Drawing.Point(213, 404);
-            this.tbxTestScore8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbxTestScore8.Margin = new System.Windows.Forms.Padding(4);
             this.tbxTestScore8.Name = "tbxTestScore8";
             this.tbxTestScore8.Size = new System.Drawing.Size(141, 28);
             this.tbxTestScore8.TabIndex = 30;
@@ -818,7 +829,7 @@
             // tbxTestScore5
             // 
             this.tbxTestScore5.Location = new System.Drawing.Point(213, 282);
-            this.tbxTestScore5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbxTestScore5.Margin = new System.Windows.Forms.Padding(4);
             this.tbxTestScore5.Name = "tbxTestScore5";
             this.tbxTestScore5.Size = new System.Drawing.Size(141, 28);
             this.tbxTestScore5.TabIndex = 33;
@@ -827,7 +838,7 @@
             // tbxTestScore3
             // 
             this.tbxTestScore3.Location = new System.Drawing.Point(213, 198);
-            this.tbxTestScore3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbxTestScore3.Margin = new System.Windows.Forms.Padding(4);
             this.tbxTestScore3.Name = "tbxTestScore3";
             this.tbxTestScore3.Size = new System.Drawing.Size(141, 28);
             this.tbxTestScore3.TabIndex = 28;
@@ -836,7 +847,7 @@
             // tbxTestScore7
             // 
             this.tbxTestScore7.Location = new System.Drawing.Point(213, 363);
-            this.tbxTestScore7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbxTestScore7.Margin = new System.Windows.Forms.Padding(4);
             this.tbxTestScore7.Name = "tbxTestScore7";
             this.tbxTestScore7.Size = new System.Drawing.Size(141, 28);
             this.tbxTestScore7.TabIndex = 27;
@@ -845,7 +856,7 @@
             // tbxTestScore4
             // 
             this.tbxTestScore4.Location = new System.Drawing.Point(213, 242);
-            this.tbxTestScore4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbxTestScore4.Margin = new System.Windows.Forms.Padding(4);
             this.tbxTestScore4.Name = "tbxTestScore4";
             this.tbxTestScore4.Size = new System.Drawing.Size(141, 28);
             this.tbxTestScore4.TabIndex = 26;
@@ -854,7 +865,7 @@
             // tbxTestScore2
             // 
             this.tbxTestScore2.Location = new System.Drawing.Point(213, 158);
-            this.tbxTestScore2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbxTestScore2.Margin = new System.Windows.Forms.Padding(4);
             this.tbxTestScore2.Name = "tbxTestScore2";
             this.tbxTestScore2.Size = new System.Drawing.Size(141, 28);
             this.tbxTestScore2.TabIndex = 25;
@@ -863,7 +874,7 @@
             // tbxTestScore1
             // 
             this.tbxTestScore1.Location = new System.Drawing.Point(213, 117);
-            this.tbxTestScore1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbxTestScore1.Margin = new System.Windows.Forms.Padding(4);
             this.tbxTestScore1.Name = "tbxTestScore1";
             this.tbxTestScore1.Size = new System.Drawing.Size(141, 28);
             this.tbxTestScore1.TabIndex = 24;
@@ -872,7 +883,7 @@
             // tbxTestNumber
             // 
             this.tbxTestNumber.Location = new System.Drawing.Point(214, 32);
-            this.tbxTestNumber.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbxTestNumber.Margin = new System.Windows.Forms.Padding(4);
             this.tbxTestNumber.Name = "tbxTestNumber";
             this.tbxTestNumber.Size = new System.Drawing.Size(141, 28);
             this.tbxTestNumber.TabIndex = 32;
@@ -946,16 +957,6 @@
             this.lblTestNameTitle.Text = "이름";
             this.lblTestNameTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // btnFileTest
-            // 
-            this.btnFileTest.Location = new System.Drawing.Point(699, 288);
-            this.btnFileTest.Name = "btnFileTest";
-            this.btnFileTest.Size = new System.Drawing.Size(163, 37);
-            this.btnFileTest.TabIndex = 42;
-            this.btnFileTest.Text = "파일입출력테스트";
-            this.btnFileTest.UseVisualStyleBackColor = true;
-            this.btnFileTest.Click += new System.EventHandler(this.btnFileTest_Click);
-            // 
             // FormManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
@@ -964,6 +965,7 @@
             this.Controls.Add(this.tabMain);
             this.Name = "FormManager";
             this.Text = "학생관리";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormManager_FormClosed);
             this.tabMain.ResumeLayout(false);
             this.tpgDepartment.ResumeLayout(false);
             this.tpgDepartment.PerformLayout();

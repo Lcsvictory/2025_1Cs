@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -7,51 +8,171 @@ using System.Threading.Tasks;
 
 namespace Week04Homework
 {
-    class FIleIO
+    class FileIO
     {
-        private string studentPath = @"..\..\datas\studentInfo.txt";
-        private string professorPath = @"..\..\datas\professorInfo.txt";
-        private string departmentPath = @"..\..\datas\departmentInfo.txt";
-        private string gradePath = @"..\..\datas\gradeInfo.txt";
+        public static string studentPath = @"..\..\datas\studentInfo.txt";
+        public static string professorPath = @"..\..\datas\professorInfo.txt";
+        public static string departmentPath = @"..\..\datas\departmentInfo.txt";
+        public static string gradePath = @"..\..\datas\gradeInfo.txt";
         private string[] paths;
         private string testPath = @"..\..\datas\test.txt";
 
         private string doesFile = string.Empty;
-        public FIleIO(string f1)
+        public FileIO(string f1)
         {
 
             paths = new string[] { studentPath, professorPath, departmentPath, gradePath};
-            if (nameof(studentPath) == f1)
+            if (studentPath== f1)
                 doesFile = studentPath;
-            else if (nameof(professorPath) == f1)
+            else if (professorPath == f1)
                 doesFile = professorPath;
-            else if (nameof(departmentPath) == f1)
+            else if (departmentPath == f1)
                 doesFile = departmentPath;
-            else if (nameof(gradePath) == f1)
+            else if (gradePath == f1)
                 doesFile = gradePath;
             else
                 doesFile = testPath;
         }    
 
-        public void Write(string recordStr)
+        //한줄쓰기
+        public void LineWrite(string recordStr)
         {
-
-            using (StreamWriter wr = new StreamWriter(doesFile, append: true))
+            try
             {
-                //recordStr을 그대로 입력한다.
-                wr.WriteLine(recordStr);
+                using (StreamWriter wr = new StreamWriter(doesFile, append: true))
+                {
+                    //recordStr을 그대로 입력한다.
+                    wr.WriteLine(recordStr);
+                }
+            } catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
             }
+            
         }
 
-        public void Read()
+        //저장할때 쓰기
+        public void Write(List<Professor> professors)
         {
-            foreach (var i in paths){
-                if (!File.Exists(i))
+            try
+            {
+                using (StreamWriter wr = new StreamWriter(doesFile, append: false))
                 {
-                    return;
+                    foreach (var prof in professors)
+                    {
+                        if (prof != null)
+                        {
+                            Console.WriteLine("Write(professors) : " + prof.FileWrite());
+                            wr.WriteLine(prof.FileWrite());
+                        }
+                        
+                    }
+                    
                 }
             }
-           //using (StreamReader re = new StreamReader())
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
+
+        public void Write(Department[] departments)
+        {
+            try
+            {
+                using (StreamWriter wr = new StreamWriter(doesFile, append: false))
+                {
+                    foreach (var dept in departments)
+                    {
+                        if (dept != null)
+                        {
+                            wr.WriteLine(dept.FileWrite());
+                        }
+                        
+                    }
+
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+
+        public void Write(Dictionary<string,Student> students)
+        {
+            try
+            {
+                using (StreamWriter wr = new StreamWriter(doesFile, append: false))
+                {
+                    foreach (var k in students.Keys)
+                    {
+                        wr.WriteLine(students[k].FileWrite());
+                    }
+
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+
+        public void Write(List<Grade> grades)
+        {
+            try
+            {
+                using (StreamWriter wr = new StreamWriter(doesFile, append: false))
+                {
+                    foreach (var grade in grades)
+                    {
+                        wr.WriteLine(grade.FileWrite());
+                    }
+
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+
+        //실행할때 읽기
+        public List<string> Read()
+        {
+            if (!File.Exists(doesFile))
+            {
+                return new List<string>();
+            }
+
+            List<string> result = new List<string>();
+            try
+            {
+                using (StreamReader re = new StreamReader(doesFile))
+                {
+                    string line = re.ReadLine();
+                    while (line != null)
+                    {
+                        result.Add(line);
+                        line = re.ReadLine();
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            return result;
+        }
+
+
+
+
+
+        //public void StudentUpdate()
+        //{
+           
+        //}
     }
 }

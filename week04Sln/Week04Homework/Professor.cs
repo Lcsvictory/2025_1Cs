@@ -19,9 +19,23 @@ namespace Week04Homework
             this.DepartmentCode = departmentCode;
         }
 
+        public Professor()
+        {
+
+        }
+
         public override string ToString()
         {
             return $"[{this.Number}] {this.Name}";
+        }
+
+        /// <summary>
+        /// 텍스트 파일에 저장할 문자열을 생성합니다.
+        /// </summary>
+        /// <returns>생성된 문자열 반환.</returns>
+        public string FileWrite()
+        {
+            return $"{this.DepartmentCode}-=-{this.Number}-=-{this.Name}";
         }
     }
 }
