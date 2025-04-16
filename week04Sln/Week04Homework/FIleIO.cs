@@ -126,7 +126,7 @@ namespace Week04Homework
                 {
                     foreach (var grade in grades)
                     {
-                        wr.WriteLine(grade.FileWrite());
+                        //wr.WriteLine(grade.FileWrite());
                     }
 
                 }

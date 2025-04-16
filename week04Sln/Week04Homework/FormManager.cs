@@ -21,6 +21,7 @@ namespace Week04Homework
         Dictionary<string, Student> students;
         List<Grade> testGrades;
         TextBox[] tbxTestScores;
+        Student selectedStudent = null;
 
         FileIO dp;
         FileIO st;
@@ -34,6 +35,7 @@ namespace Week04Homework
             departments = new Department[100];
             professors = new List<Professor>();
             students = new Dictionary<string, Student>();
+            testGrades = new List<Grade>();
             tbxTestScores = new TextBox[]
             {
                 tbxTestScore1,
@@ -191,6 +193,7 @@ namespace Week04Homework
                     if (departments[i].Code == tbxDepartmentCode.Text)
                     {
                         MessageBox.Show("중복된 코드가 존재합니다.");
+                        tbxDepartmentCode.Focus();
                         return;
                     }
                 }
@@ -275,6 +278,15 @@ namespace Week04Homework
                         }
                     }
                     
+                    break;
+
+                case 3:
+                    foreach (var tbxScore in tbxTestScores)
+                    {
+                        tbxScore.Text = string.Empty;
+                    }
+                    lblTestTotalCount.Text = string.Empty;
+                    lblTestAverage.Text = string.Empty;
                     break;
                 default:
                     break;
@@ -446,6 +458,7 @@ namespace Week04Homework
         private void btnNew_Click(object sender, EventArgs e)
         {
             ClearStudentInfo();
+            lbxDictionary.SelectedIndex = -1;
         }
 
         private void ClearStudentInfo()
@@ -465,11 +478,10 @@ namespace Week04Homework
             tbxNumber.ReadOnly = false;
             selectedStudent = null;
             btnRegister.Text = "등록";
-            lbxDictionary.SelectedIndex = -1;
         }
 
 
-        Student selectedStudent = null;
+        
         private void btnRegister_Click(object sender, EventArgs e)
         {
             if (selectedStudent == null)
@@ -826,15 +838,17 @@ namespace Week04Homework
             {
                 return;
             }
-            selectedStudent = (lbxDictionary.SelectedItem as Student);
-
-            if (selectedStudent != null){
-                DisplaySelectedStudent(selectedStudent);
+            
+            Student student = (lbxDictionary.SelectedItem as Student);
+            ClearStudentInfo();
+            if (student != null){
+                DisplaySelectedStudent(student);
             }
         }
 
         private void DisplaySelectedStudent(Student student)
         {
+            selectedStudent = student;
             tbxNumber.ReadOnly = true;
             tbxNumber.Text = student.Number;
             tbxName.Text = student.Name;
@@ -918,8 +932,56 @@ namespace Week04Homework
 
             lblTestName.Text = selectedStudent.Name;
 
-            
+            var grade = SearchGradeByNumber(selectedStudent.Number);
 
+#if false
+            if (grade != null)
+            {
+                for (int i = 0; i < grade.Scores.Count && i < tbxTestScores.Length; i++)
+                {
+                    tbxTestScores[i].Text = grade.Scores[i].ToString("0.0");
+                }
+            }
+#else
+            if (grade != null)
+            {
+                for (int i = 0; i < grade.ScoresCount() && i < tbxTestScores.Length; i++)
+                {
+                    tbxTestScores[i].Text = grade.GetScores(i).ToString("0.0");
+                }
+            }
+#endif
+
+            //if (grade != null)
+            //{
+            //    //int j = 0;
+            //    //foreach(var textScore in tbxTestScores)
+            //    //{
+            //    //    textScore.Text = grade.Scores[j].ToString("0.0");
+            //    //    j++;
+            //    //}
+
+            //    for (int i = 0; i < grade.Scores.Count && i < tbxTestScores.Length; i++)
+            //    {
+            //        tbxTestScores[i].Text = grade.Scores[i].ToString("0.0");
+            //    }
+            //}
+        }
+
+        private Grade SearchGradeByNumber(string number)
+        {
+            if (testGrades != null)
+            {
+                foreach (Grade grd in testGrades)
+                {
+                    if (grd != null && grd.StudentNumber.Equals(number))
+                    {
+                        return grd;
+                    }
+                }
+            }
+            
+            return null;
         }
 
         private Student SearchStudentByNumber(string number)
@@ -958,6 +1020,85 @@ namespace Week04Homework
             pr.Write(professors);
         }
 
-       
+        private void btnTestRegScore_Click(object sender, EventArgs e)
+        {
+            if (selectedStudent == null)
+            {
+                tbxTestNumber.Focus();
+                return;
+            }
+            
+            for (int i = 1; i < tbxTestScores.Length; i++)
+            {
+                if (string.IsNullOrEmpty(tbxTestScores[i - 1].Text) && !string.IsNullOrEmpty(tbxTestScores[1].Text))
+                {
+                    tbxTestScores[i - 1].Focus();
+                    return;
+                }
+            }
+
+
+            var grade = SearchGradeByNumber(selectedStudent.Number);
+            if (grade == null)
+            {
+                Console.WriteLine("grade가 null이므로 새로 만들었음.");
+                grade = new Grade()
+                {
+                    StudentNumber = selectedStudent.Number
+                };
+            }
+
+#if false
+            grade.Scores.Clear();
+
+
+            double temp;
+            for (int i = 0; i < tbxTestScores.Length; i++)
+            {
+                if (string.IsNullOrEmpty(tbxTestScores[i].Text))
+                {
+                    break;
+                }
+
+                if (false == double.TryParse(tbxTestScores[i].Text, out temp))
+                {
+                    tbxTestScores[i].Focus();
+                    return;
+                }
+                grade.Scores.Add(temp);
+            }
+#else
+            grade.Clear();
+
+
+            double temp;
+            for (int i = 0; i < tbxTestScores.Length; i++)
+            {
+                if (string.IsNullOrEmpty(tbxTestScores[i].Text))
+                {
+                    break;
+                }
+
+                if (false == double.TryParse(tbxTestScores[i].Text, out temp))
+                {
+                    tbxTestScores[i].Focus();
+                    return;
+                }
+                Console.WriteLine(temp);
+                if (!grade.Add(temp))
+                {
+                    Console.WriteLine("grade에 추가하지 못헀음.");
+                }
+            }
+#endif
+            testGrades.Add(grade);
+
+            lblTestTotalCount.Text = grade.ScoresCount().ToString();
+
+            lblTestAverage.Text = grade.GetAverage().ToString();
+
+
+
+        }
     }
 }

@@ -22,6 +22,7 @@
 - ctrl + - : 이전 작업공간으로 점프
 - ctrl + shift + - : 앞으로 점프
 - alt + shift + . : 같은 단어 선택
+- ctrl + M + O
 
 week02
 ---
@@ -85,3 +86,15 @@ week06
 - 값(변수) + 기능(메소드)
 - class변수 = 정적변수 (static)
 
+week07
+---
+
+
+### DataTime자료형
+- 
+
+### Random자료형
+-
+
+### string 
+-
