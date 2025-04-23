@@ -29,9 +29,9 @@ namespace Week07Homework
         
         private bool inputValid(TextBox tb1)
         {
-            if (string.IsNullOrEmpty(tb1.Text))
+            if (string.IsNullOrEmpty(tb1.Text.Trim()))
             {
-                
+
                 MessageBox.Show($"{tb1.Name}을(를) 입력하세요.");
                 tb1.Focus();
                 return false;
@@ -64,6 +64,7 @@ namespace Week07Homework
             do
             {
                 productCode = DateTime.Now.ToString("yyyyMMdd") + new Random().Next(1000).ToString("D3");
+                DateTime.Now.ToString("yyyyMMdd");
             }
             while (Codes.Contains(productCode));
 
