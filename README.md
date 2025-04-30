@@ -98,3 +98,44 @@ week07
 
 ### string 
 -
+
+wee09
+---
+
+### Property (속성)
+
+필드가 존재하고 해당 필드에 getter, setter를 해주는 놈
+
+- getter, setter를 한번에 처리 가능함.
+- 변수처럼 사용
+
+
+기본형태
+
+``get``,``set``,``value`` 키워드
+```
+private string _code;
+    public string Code
+{
+    get { return this._code; }
+    set { this._code = value;  } 
+}
+```
+
+자동구현 Property
+```
+public string Address { get; set; }
+
+//자동생성 내용
+public string Address { get => address; set => address = value; }
+private string address;
+```
+
+
+### Enumerate (열거형)
+
+정수에 이름을 붙이는것
+
+```
+
+```
