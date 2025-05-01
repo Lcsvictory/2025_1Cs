@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -771,17 +772,19 @@ namespace Week04Homework
             professors = new List<Professor>();
             students = new Dictionary<string, Student>();
 
-            for (int i = 0; i <= (int)YEAR.END; i++) {
+            for (int i = 0; i < (int)YEAR.END; i++) {
                 cmbYear.Items.Add(Student.YearNames[(YEAR)i]);
             }
 
             cmbClass.Items
                 .AddRange(new object[] { CLASS.A, CLASS.B, CLASS.C });
 
-            cmbRegStatus.Items.Add("재학");
-            cmbRegStatus.Items.Add("졸업");
-            cmbRegStatus.Items.Add("휴학");
-            cmbRegStatus.Items.Add("퇴학");
+
+            for (int i = 0; i < (int)REG_STATUS.END; i++)
+            {
+                cmbRegStatus.Items.Add(Student.RegNames[(REG_STATUS)i]);
+            }
+            
 
             testGrades = new List<Grade>();
             tbxTestScores = new TextBox[] {
@@ -806,35 +809,22 @@ namespace Week04Homework
                 }
             }
 
-            professors.Add(new Professor() {
-                DepartmentCode = departments[0].Code,
-                Number = "2020001",
-                Name = "김인하"
-            });
+            professors.Add(new Professor(departments[0].Code, "2020001", "김인하"));
+            professors.Add(new Professor(departments[0].Code, "2023003", "김정석"));
+            professors.Add(new Professor(departments[1].Code, "2023004", "이공전"));
 
-            professors.Add(new Professor() {
-                DepartmentCode = departments[0].Code,
-                Number = "2023003",
-                Name = "김정석"
-            });
-
-
-            professors.Add(new Professor() {
-                DepartmentCode = departments[1].Code,
-                Number = "2023004",
-                Name = "이공전"
-            });
-            
-            students.Add("20240001", new Student("20240001", "김미영") {
-                RegStatus = "재학",
+            Student st1 = new Student("20240001", "김미영")
+            {
+                RegStatus = REG_STATUS.ENROLLED,
                 Year = YEAR.ONE,
-                BirthInfo = new DateTime(2004, 01, 01),
                 DepartmentCode = "A001",
                 AdvisorNumber = "2020001",
                 Class = CLASS.B,
                 Address = "인천 남구 용현동 100",
                 Contact = "032-870-0000"
-            });
+            };
+            st1.setBirthInfo(2004, 01, 01);
+            students.Add("20240001", st1);
 
             foreach (var student in students) {
                 if (student.Value != null) {
@@ -1005,10 +995,8 @@ namespace Week04Homework
                 }
             }
 
-            Professor professor = new Professor();
-            professor.DepartmentCode = dept.Code;
-            professor.Number = tbxProfessorNumber.Text;
-            professor.Name = tbxProfessorName.Text;
+            Professor professor = new Professor(tbxProfessorNumber.Text, tbxProfessorName.Text, dept.Code);
+            
 
             professors.Add(professor);
             lbxProfessor.Items.Add(professor);
@@ -1130,9 +1118,7 @@ namespace Week04Homework
                 return;
             }
 
-            Student student = new Student();
-            student.Number = number;
-            student.Name = tbxName.Text.Trim();
+            Student student = new Student(number, tbxName.Text.Trim());
 
             int birthYear, birthMonth;// birthDay;
             if (true == int.TryParse(tbxBirthYear.Text, out birthYear)) {
@@ -1166,7 +1152,7 @@ namespace Week04Homework
                 return;
             }
 
-            student.BirthInfo = new DateTime(birthYear, birthMonth, birthDay);
+            student.setBirthInfo(birthYear, birthMonth, birthDay);
 
             if (cmbDepartment.SelectedIndex < 0) {
                 //cmbDepartment.Focus();
@@ -1200,7 +1186,7 @@ namespace Week04Homework
                 cmbRegStatus.Focus();
                 return;
             }
-            student.RegStatus = cmbRegStatus.SelectedItem.ToString();
+            student.RegStatus = (REG_STATUS)cmbRegStatus.SelectedIndex;
 
             student.Address = tbxAddress.Text.Trim();
             student.Contact = tbxContact.Text.Trim();
@@ -1280,8 +1266,8 @@ namespace Week04Homework
             //수정완료 메세지를 띄운 후
             //화면을 초기화 상태로 만든다.
 
-            selectedStudent.Name = tbxName.Text.Trim();
-            selectedStudent.BirthInfo = new DateTime(birthYear, birthMonth, birthDay);
+            //selectedStudent.Name = tbxName.Text.Trim();
+            selectedStudent.setBirthInfo(birthYear, birthMonth, birthDay);
 
             if (cmbDepartment.SelectedIndex < 0) {
                 selectedStudent.DepartmentCode = null;
@@ -1297,7 +1283,7 @@ namespace Week04Homework
 
             selectedStudent.Year = (YEAR) year;
             selectedStudent.Class = (CLASS) cmbClass.SelectedIndex;
-            selectedStudent.RegStatus = cmbRegStatus.SelectedItem.ToString();
+            selectedStudent.RegStatus = (REG_STATUS)cmbRegStatus.SelectedIndex;
             selectedStudent.Address = tbxAddress.Text.Trim();
             selectedStudent.Contact = tbxContact.Text.Trim();
 
@@ -1364,7 +1350,7 @@ namespace Week04Homework
             }
 
             for (int i = 0; i < cmbRegStatus.Items.Count; i++) {
-                if (cmbRegStatus.Items[i].ToString() == student.RegStatus) {
+                if (i == (int)student.RegStatus) {
                     cmbRegStatus.SelectedIndex = i;
                     break;
                 }
@@ -1453,9 +1439,7 @@ namespace Week04Homework
                 = SearchGradeByNumber(selectedStudent.Number);
 
             if (grade == null) {
-                grade = new Grade() {
-                    StudentNumber = selectedStudent.Number
-                };
+                grade = new Grade(selectedStudent.Number);
             }
 
             grade.Clear();

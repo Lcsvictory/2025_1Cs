@@ -36,14 +36,19 @@ namespace Week04Homework
 {
     class Grade
     {
-        //static field
-        //public static int MAX_GRADE_COUNT = 9;
-        //private static int MAX_GRADE_COUNT = 9;
-        //const = const + static
         public const int MAX_GRADE_COUNT = 9;
 
-        //instance field
-        public string StudentNumber;
+        private string _studentNumber;
+        public string StudentNumber
+        {
+            get { return this._studentNumber; }
+        }
+
+        public Grade(string sNumber)
+        {
+            this._studentNumber = sNumber;
+        }
+
         private List<double> _scores = new List<double>();
 
         public int Count()

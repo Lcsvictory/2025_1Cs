@@ -26,6 +26,15 @@ namespace Week04Homework
         END,
     }
     
+    enum REG_STATUS
+    {
+        ENROLLED,
+        GRADUATED,
+        ONLEAVE,
+        EXPELLED,
+
+        END,
+    }
 
     class Student {
 
@@ -44,7 +53,16 @@ namespace Week04Homework
             {YEAR.THREE, "3학년"},
             {YEAR.FOUR, "4학년 (심화)"},
         };
-        
+
+
+        public static Dictionary<REG_STATUS, string> RegNames = new Dictionary<REG_STATUS, string>()
+        {
+            {REG_STATUS.ENROLLED, "재학" },
+            {REG_STATUS.GRADUATED, "졸업" },
+            {REG_STATUS.ONLEAVE, "휴학" },
+            {REG_STATUS.EXPELLED, "퇴학" },
+        };
+
         public string Number { get; private set; } //학번
         
         public string Name { get; private set; } //이름
@@ -59,7 +77,7 @@ namespace Week04Homework
         public string AdvisorNumber { get; set; } //지도교수번호
         public YEAR Year { get; set; } // 학년
         public CLASS Class { get; set; } // 반
-        public string RegStatus { get; set; } //재적상태
+        public REG_STATUS RegStatus { get; set; } //재적상태
         public string Address { get; set; } //주소
 
         private string _contact;//연락처 
