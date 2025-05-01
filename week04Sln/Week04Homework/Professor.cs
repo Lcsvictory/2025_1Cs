@@ -8,9 +8,9 @@ namespace Week04Homework
 {
     class Professor
     {
-        public string DepartmentCode;
-        public string Number;
-        public string Name;
+        public string DepartmentCode { get; set; }
+        public string Number { get; set; } 
+        public string Name { get; set; }
 
         public Professor(string number, string name, string departmentCode)
         {

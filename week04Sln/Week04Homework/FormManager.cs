@@ -394,7 +394,6 @@ namespace Week04Homework
             deptcode = deptcode.Substring(1, rightBigParen);
             Professor prof = new Professor(tbxProfessorNumber.Text, tbxProfessorName.Text, deptcode);
             professors.Add(prof);
-
             lbxProfessor.Items.Add(prof);
 
             tbxProfessorNumber.Text = "";
@@ -421,17 +420,16 @@ namespace Week04Homework
                 MessageBox.Show("삭제할 항목을 선택하세요.");
                 return;
             }
-            var target = lbxProfessor.SelectedItem as Professor;
+            var target = professors[lbxProfessor.SelectedIndex];
             if (target != null)
             {
                 professors.Remove(target);
-                lbxProfessor.Items.Remove(target);
+                lbxProfessor.Items.RemoveAt(lbxProfessor.SelectedIndex);
             }
 
             lbxProfessor.SelectedIndex = -1;
 
         }
-
         private void cmbDepartment_SelectedIndexChanged(object sender, EventArgs e)
         {
             cmbAdvisor.Items.Clear();
@@ -819,8 +817,9 @@ namespace Week04Homework
             if (makeUpdatestudent(selectedStudent))
             {
                 MessageBox.Show("학생정보를 수정했습니다.");
-                lbxDictionary.Items.Remove(selectedStudent);
-                lbxDictionary.Items.Add(selectedStudent);
+                students[selectedStudent.Number] = selectedStudent;
+                //lbxDictionary.Items.Remove(selectedStudent);
+                //lbxDictionary.Items.Add(selectedStudent);
                 ClearStudentInfo();
             } else
             {
