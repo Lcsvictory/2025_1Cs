@@ -238,4 +238,4 @@ week12
     Dog타입이면 isDog == true, dog == Dog instance
     Dog타입이 아니면 isDog == false, dog == NULL
 
-
+## LINQ
