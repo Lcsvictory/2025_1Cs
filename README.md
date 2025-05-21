@@ -226,3 +226,16 @@ week11
 
 - 자동구현 Property 적용 안됨. 프로퍼티의 정의는 그저 정의일 뿐임.
 
+week12
+---
+## 형변환 방법
+``1``. if (item is Dog) { Dog dog = (Dog)item} 
+
+``2``. var dog = item as Dog; //Dog가 아니면 dog == NULL
+
+``3``. bool isDog = item is Dog dog; 
+
+    Dog타입이면 isDog == true, dog == Dog instance
+    Dog타입이 아니면 isDog == false, dog == NULL
+
+
