@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Week04Homework
+namespace Week04Homework 
 {
 
     enum YEAR
@@ -36,14 +36,17 @@ namespace Week04Homework
         END,
     }
 
-    class Student {
+    class Student : Member
+    {
 
 
-        public Student(string number, string name)
+        public Student(string number, string name) : base(number,name, null)
         {
-            //property로 필드에 접근하고있다.
-            this.Number = number;
-            this.Name = name;
+            
+        }
+        public Student(string number, string name, Department dept) : base(number, name, dept)
+        {
+            
         }
 
         public static Dictionary<YEAR, string> YearNames = new Dictionary<YEAR, string>()
@@ -63,9 +66,6 @@ namespace Week04Homework
             {REG_STATUS.EXPELLED, "퇴학" },
         };
 
-        public string Number { get; private set; } //학번
-        
-        public string Name { get; private set; } //이름
         public DateTime BirthInfo { get; private set; } //생년월일
         public void setBirthInfo (int year, int month, int day)
         {
@@ -73,7 +73,6 @@ namespace Week04Homework
         }
 
 
-        public string DepartmentCode { get; set; } //학과코드
         public string AdvisorNumber { get; set; } //지도교수번호
         public YEAR Year { get; set; } // 학년
         public CLASS Class { get; set; } // 반

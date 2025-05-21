@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -8,6 +9,27 @@ namespace Week04Homework
 {
     public partial class FormManager : Form
     {
+        public string PATH
+        {
+            get
+            {
+                var path = "c:\\class_a";
+                if (false == Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+                return path;
+            }
+        }
+
+        public string DepartmentFullFileName
+        {
+            get
+            {
+                return Path.Combine(PATH, "department.txt");
+            }
+        }
+
         Department[] departments;
         List<Professor> professors;
         Dictionary<string, Student> students;
@@ -50,25 +72,51 @@ namespace Week04Homework
                 tbxTestScore9,
             };
 
-            departments[0] = new Department("A001", "컴퓨터정보");
+            //departments[0] = new Department("A001", "컴퓨터정보");
 
-            departments[1] = new Department("A002", "컴퓨터시스템");
+            //departments[1] = new Department("A002", "컴퓨터시스템");
 
-            for (int i = 0; i < departments.Length; i++) {
-                if (departments[i] != null) {
-                    lbxDepartment.Items.Add(departments[i]);
+            //for (int i = 0; i < departments.Length; i++)
+            //{
+            //    if (departments[i] != null)
+            //    {
+            //        lbxDepartment.Items.Add(departments[i]);
+            //    }
+            //}
+            if (false == File.Exists(DepartmentFullFileName))
+            {
+                using (FileStream fs = new FileStream(DepartmentFullFileName, FileMode.Open))
+                {
+                    using (StreamReader sr = new StreamReader(fs))
+                    {
+                        int i = 0;
+                        while (sr.EndOfStream == false)
+                        {
+                            string data = sr.ReadLine();
+                            var dept = Department.Restore(data);
+                            if (dept != null && i < departments.Length)
+                            {
+                                departments[i++] = dept;
+                                lbxDepartment.Items.Add(dept);
+                            }
+                            
+                        }
+                    }
                 }
             }
 
-            professors.Add(new Professor("2020001", "김인하", departments[0].Code));
-            professors.Add(new Professor("2023003", "김정석", departments[0].Code));
-            professors.Add(new Professor("2023004", "이공전", departments[1].Code));
+            
+
+            professors.Add(new Professor("2020001", "김인하", departments[0]));
+            professors.Add(new Professor("2023003", "김정석", departments[0]));
+            professors.Add(new Professor("2023004", "이공전", departments[1]));
 
             Student st1 = new Student("20240001", "김미영")
             {
                 RegStatus = REG_STATUS.ENROLLED,
                 Year = YEAR.ONE,
-                DepartmentCode = "A001",
+                //LINQ
+                Dept = departments.FirstOrDefault(m => m.Code == "A001"),
                 AdvisorNumber = "2020001",
                 Class = CLASS.B,
                 Address = "인천 남구 용현동 100",
@@ -125,6 +173,15 @@ namespace Week04Homework
             departments[index] = dept;
 
             lbxDepartment.Items.Add(dept);
+
+            using (FileStream fs = new FileStream(DepartmentFullFileName, FileMode.Append))
+            {
+                using (StreamWriter sw = new StreamWriter(fs))
+                {
+                    sw.WriteLine(dept.Record);
+                }
+            }
+
         }
 
         private void btnRemoveDepartment_Click(object sender, EventArgs e)
@@ -146,6 +203,31 @@ namespace Week04Homework
 
                 lbxDepartment.Items.RemoveAt(lbxDepartment.SelectedIndex);
                 lbxDepartment.SelectedIndex = -1;
+                try
+                {
+                    using (FileStream fs = new FileStream(DepartmentFullFileName, FileMode.Create))
+                    {
+                        using (StreamWriter sw = new StreamWriter(fs))
+                        {
+                            foreach (var dept in departments)
+                            {
+                                sw.WriteLine(dept.Record);
+                            }
+                        }
+                    }
+                }
+                catch (NullReferenceException ex)
+                {
+                    Console.WriteLine("배열 요소 확인할것." + ex.Message);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                finally
+                {
+                    Console.WriteLine("학과 삭제 종료");
+                }
             }
         }
 
@@ -205,7 +287,7 @@ namespace Week04Homework
 
             if (department != null) {
                 foreach (var professor in professors) {
-                    if (professor != null && professor.DepartmentCode == department.Code) {
+                    if (professor != null && professor.Dept.Code == department.Code) {
                         lbxProfessor.Items.Add(professor);
                     }
                 }
@@ -246,7 +328,7 @@ namespace Week04Homework
                 }
             }
 
-            Professor professor = new Professor(tbxProfessorNumber.Text, tbxProfessorName.Text, dept.Code);
+            Professor professor = new Professor(tbxProfessorNumber.Text, tbxProfessorName.Text, dept);
             
 
             professors.Add(professor);
@@ -288,7 +370,7 @@ namespace Week04Homework
             }
 
             foreach (var professor in professors) {
-                if (professor != null && professor.DepartmentCode == dept.Code) {
+                if (professor != null && professor.Dept.Code == dept.Code) {
                     cmbAdvisor.Items.Add(professor);
                 }
             }
@@ -408,10 +490,10 @@ namespace Week04Homework
             if (cmbDepartment.SelectedIndex < 0) {
                 //cmbDepartment.Focus();
                 //return;
-                student.DepartmentCode = null;
+                student.Dept = null;
             } else {
-                student.DepartmentCode
-                 = (cmbDepartment.SelectedItem as Department).Code;
+                student.Dept
+                 = (cmbDepartment.SelectedItem as Department);
             }
 
             if (cmbAdvisor.SelectedIndex < 0) {
@@ -521,9 +603,9 @@ namespace Week04Homework
             selectedStudent.setBirthInfo(birthYear, birthMonth, birthDay);
 
             if (cmbDepartment.SelectedIndex < 0) {
-                selectedStudent.DepartmentCode = null;
+                selectedStudent.Dept = null;
             } else {
-                selectedStudent.DepartmentCode = (cmbDepartment.SelectedItem as Department).Code;
+                selectedStudent.Dept = (cmbDepartment.SelectedItem as Department);
             }
 
             if (cmbAdvisor.SelectedIndex < 0) {
@@ -571,7 +653,7 @@ namespace Week04Homework
 
             for (int i = 0; i < cmbDepartment.Items.Count; i++) {
                 if ((cmbDepartment.Items[i] as Department).Code
-                    == student.DepartmentCode) {
+                    == student.Dept.Code) {
                     cmbDepartment.SelectedIndex = i;
                     break;
                 }

@@ -56,11 +56,25 @@ namespace Week04Homework
             }
         }
 
+        public static Department Restore(string data)
+        {
+            Department dept = null;
+
+            var temp = data.Trim().Split(new char[] { '|' });
+            dept = new Department(temp[0], temp[1]);
+            return dept;
+        }
+
 
         //python의 __str__()와 동일
         public override string ToString()
         {
             return $"[{Code}] {Name}";
+        }
+
+        public string Record
+        {
+            get { return $"{Code}|{Name}"; }
         }
     }
 }
