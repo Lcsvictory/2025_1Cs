@@ -73,18 +73,35 @@ namespace Week04Homework
         }
 
 
-        public string AdvisorNumber { get; set; } //지도교수번호
+        public Professor Advisor { get; set; } //지도교수
         public YEAR Year { get; set; } // 학년
         public CLASS Class { get; set; } // 반
         public REG_STATUS RegStatus { get; set; } //재적상태
         public string Address { get; set; } //주소
+        public string Contact { get; set; }
 
-        private string _contact;//연락처 
-        public string Contact
+        public string Record
         {
-            get { return _contact; }
-            set { this._contact = value; }
+            get { return $"{Number}|{Name}|{Dept.Code}|{((int)Year)}|{((int)Class)}|{((int)RegStatus)}|{Advisor.Number}|{BirthInfo.Year}|{BirthInfo.Month}|{BirthInfo.Day}|{Address}|{Contact}"; }
         }
+
+        public static Student Restore(List<Professor> profs, List<Department> depts, string data)
+        {
+            string[] temp = data.Trim().Split(new char[] { '|' });
+            Student st = new Student(temp[0], temp[1])
+            {
+                Dept = depts.FirstOrDefault(m => m.Code == temp[2]),
+                Year = (YEAR)int.Parse(temp[3]),
+                Class = (CLASS)int.Parse(temp[4]),
+                RegStatus = (REG_STATUS)int.Parse(temp[5]),
+                Advisor = profs.FirstOrDefault(m => m.Number == temp[6]),
+                BirthInfo = new DateTime(int.Parse(temp[7]), int.Parse(temp[8]), int.Parse(temp[9])),
+                Address = temp[10],
+                Contact = temp[11]
+            };
+            return st;
+        }
+
         public override string ToString() {
             return $"[{this.Number}]{this.Name}";
         }

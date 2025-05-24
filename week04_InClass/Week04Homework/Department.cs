@@ -45,23 +45,11 @@ namespace Week04Homework
             }
         }
 
-        public string GetCode()
-        {
-            return this._code;
-        }
-        private void SetCode(string code)
-        {
-            if (false == string.IsNullOrEmpty(code)){
-                this._code = code;
-            }
-        }
 
         public static Department Restore(string data)
         {
-            Department dept = null;
-
             var temp = data.Trim().Split(new char[] { '|' });
-            dept = new Department(temp[0], temp[1]);
+            Department dept = new Department(temp[0], temp[1]);
             return dept;
         }
 
