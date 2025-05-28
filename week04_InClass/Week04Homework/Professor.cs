@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Week04Homework
 {
-    class Professor : Member
+    class Professor : Member, IFile
     {
 
         public string Record
@@ -20,9 +20,21 @@ namespace Week04Homework
 
         public static Professor Restore(string data, List<Department> depts)
         {
-            string[] temp = data.Trim().Split(new char[] { '|' });
-            Department dept = depts.FirstOrDefault(m => m.Code == temp[2]);
-            Professor prof = new Professor(temp[0], temp[1], dept);
+            Professor prof = null;
+            try
+            {
+                string[] temp = data.Trim().Split('|');
+                Department dept = depts.FirstOrDefault(m => m != null && m.Code == temp[2]);
+                prof = new Professor(temp[0], temp[1], dept);
+            } catch (IndexOutOfRangeException ex)
+            {
+                Console.WriteLine("저장된 데이터의 포맷이 잘못되었습니다. : " + ex);
+                throw ex;
+            } catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+            
             return prof;
         }
 
