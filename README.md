@@ -239,3 +239,19 @@ week12
     Dog타입이 아니면 isDog == false, dog == NULL
 
 ## LINQ
+
+week13
+---
+## Enum.TryParse()
+```
+    if (Enum.TryParse<열거형타입>(바꿀데이터, out var 변수)_ {}
+```
+
+## DateTime.ParseExact() 날짜데이터 변환
+```
+    DateTime birth = DateTime.ParseExact("2020,01,22", "yyyy,mm,dd", null);
+```
+
+## 인터페이스의 메소드 오버라이딩
+- 인터페이스의 메소드/프로퍼티를 구현한다는것은 오버라이딩한것과 동일한가?
+

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Week04Homework
 {
     //Object 클래스를 상속한 Department
-    class Department : object
+    class Department : object, IFile
     {
         private string _code;
         private string _name;

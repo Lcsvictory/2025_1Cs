@@ -36,7 +36,7 @@ namespace Week04Homework
         END,
     }
 
-    class Student : Member
+    class Student : Member, IFile
     {
 
 
@@ -83,22 +83,33 @@ namespace Week04Homework
         public string Record
         {
             get { return $"{Number}|{Name}|{Dept.Code}|{((int)Year)}|{((int)Class)}|{((int)RegStatus)}|{Advisor.Number}|{BirthInfo.Year}|{BirthInfo.Month}|{BirthInfo.Day}|{Address}|{Contact}"; }
+            //get { return $"{Number}|{Name}|{Dept.Code}|{((int)Year)}|{((int)Class)}|{((int)RegStatus)}|{Advisor.Number}|{BirthInfo:yyyy,MM,dd}|{Address}|{Contact}"; }
+            
         }
 
         public static Student Restore(List<Professor> profs, List<Department> depts, string data)
         {
-            string[] temp = data.Trim().Split(new char[] { '|' });
-            Student st = new Student(temp[0], temp[1])
+            Student st = null;
+            try
             {
-                Dept = depts.FirstOrDefault(m => m.Code == temp[2]),
-                Year = (YEAR)int.Parse(temp[3]),
-                Class = (CLASS)int.Parse(temp[4]),
-                RegStatus = (REG_STATUS)int.Parse(temp[5]),
-                Advisor = profs.FirstOrDefault(m => m.Number == temp[6]),
-                BirthInfo = new DateTime(int.Parse(temp[7]), int.Parse(temp[8]), int.Parse(temp[9])),
-                Address = temp[10],
-                Contact = temp[11]
-            };
+                string[] temp = data.Trim().Split(new char[] { '|' });
+                if (temp.Length == 12) {
+                    st = new Student(temp[0], temp[1])
+                    {
+                        Dept = depts.FirstOrDefault(m => m != null && m.Code == temp[2].Trim()),
+                        Year = (YEAR)int.Parse(temp[3]),
+                        Class = (CLASS)int.Parse(temp[4]),
+                        RegStatus = (REG_STATUS)int.Parse(temp[5]),
+                        Advisor = profs.FirstOrDefault(m => m != null && m.Number == temp[6]),
+                        BirthInfo = new DateTime(int.Parse(temp[7]), int.Parse(temp[8]), int.Parse(temp[9])),
+                        Address = temp[10],
+                        Contact = temp[11]
+                    };
+                }
+            } catch (IndexOutOfRangeException ex)
+            {
+                Console.WriteLine("저장된 데이터의 포맷이 잘못되었습니다." + ex);
+            }
             return st;
         }
 

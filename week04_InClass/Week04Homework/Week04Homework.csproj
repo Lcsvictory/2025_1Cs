@@ -54,6 +54,7 @@
       <DependentUpon>FormManager.cs</DependentUpon>
     </Compile>
     <Compile Include="Grade.cs" />
+    <Compile Include="IFile.cs" />
     <Compile Include="Member.cs" />
     <Compile Include="Professor.cs" />
     <Compile Include="Program.cs" />
