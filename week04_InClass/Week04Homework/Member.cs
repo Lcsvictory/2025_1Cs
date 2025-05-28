@@ -9,7 +9,7 @@ namespace Week04Homework
     abstract class Member
     {
         public string Number { get; protected set; }
-        public string Name { get; protected set; }
+        public string Name { get; set; }
         public Department Dept { get; set; }
 
         public Member (string number, string name, Department dept)

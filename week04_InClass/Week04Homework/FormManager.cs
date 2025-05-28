@@ -747,7 +747,7 @@ namespace Week04Homework
             //수정완료 메세지를 띄운 후
             //화면을 초기화 상태로 만든다.
 
-            //selectedStudent.Name = tbxName.Text.Trim();
+            selectedStudent.Name = tbxName.Text.Trim();
             selectedStudent.setBirthInfo(birthYear, birthMonth, birthDay);
 
             if (cmbDepartment.SelectedIndex < 0) {
