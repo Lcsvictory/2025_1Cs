@@ -36,9 +36,19 @@ namespace Week04Homework
             get { return Path.Combine(PATH, "students.txt"); }
         }
 
+        public string gradesFullFileName(string number)
+        {
+            string filePath = Path.Combine(PATH, "scores"); ;
+            if (false == Directory.Exists(filePath))
+            {
+                Directory.CreateDirectory(filePath);
+            }
+            return Path.Combine(filePath, number+".txt");
+        }
+
         List<Department> departments;
         List<Professor> professors;
-        Dictionary<string, Student> students;
+        List<Student> students;
 
         List<Grade> testGrades;
         TextBox[] tbxTestScores;
@@ -49,7 +59,7 @@ namespace Week04Homework
 
             departments = new List<Department>();
             professors = new List<Professor>();
-            students = new Dictionary<string, Student>();
+            students = new List<Student>();
 
             for (int i = 0; i < (int)YEAR.END; i++) {
                 cmbYear.Items.Add(Student.YearNames[(YEAR)i]);
@@ -78,19 +88,14 @@ namespace Week04Homework
                 tbxTestScore9,
             };
 
-            //departments[0] = new Department("A001", "컴공");
-            //departments[1] = new Department("A002", "항운");
-            //departments[2] = new Department("A003", "전기");
-            //lbxDepartment.Items.Add(departments[0]);
-            //lbxDepartment.Items.Add(departments[1]);
-            //lbxDepartment.Items.Add(departments[2]);
-
             //학과정보를 파일에서 읽어온다
             OpenInfo(ref departments, DepartmentsFullFileName);
             //교수정보를 파일에서 읽어온다.
             OpenInfo(ref professors, ProfessorsFullFileName);
             //학생정보를 파일에서 읽어온다.
             OpenInfo(ref students, studentsFullFileName);
+            //점수를 파일에서 읽어온다.
+            OpenInfo(ref testGrades);
         }
 
         private void OpenInfo(ref List<Professor> professors, string fileName)
@@ -164,13 +169,13 @@ namespace Week04Homework
             }
         }
 
-        private void OpenInfo(ref Dictionary<string, Student> students, string fileName)
+        private void OpenInfo(ref List<Student> students, string fileName)
         {
-            if (File.Exists(studentsFullFileName))
+            if (File.Exists(fileName))
             {
                 try
                 {
-                    using (FileStream fs = new FileStream(studentsFullFileName, FileMode.Open))
+                    using (FileStream fs = new FileStream(fileName, FileMode.Open))
                     {
                         using (StreamReader sr = new StreamReader(fs))
                         {
@@ -182,7 +187,7 @@ namespace Week04Homework
                                     var stu = Student.Restore(professors, departments, data);
                                     if (stu != null)
                                     {
-                                        students.Add(stu.Number, stu);
+                                        students.Add(stu);
                                         lbxDictionary.Items.Add(stu);
                                     }
                                 }
@@ -197,6 +202,47 @@ namespace Week04Homework
                     Console.WriteLine("학생정보 읽어오는중 에러발생 : " + ex);
                 }
 
+            }
+        }
+
+        private void OpenInfo(ref List<Grade> grades)
+        {
+            string fileName = null;
+            foreach (var st in students)
+            {
+                fileName = gradesFullFileName(st.Number);
+            
+                if (File.Exists(fileName))
+                {
+                    try
+                    {
+                        using (FileStream fs = new FileStream(fileName, FileMode.Open))
+                        {
+                            using (StreamReader sr = new StreamReader(fs))
+                            {
+                                while (!sr.EndOfStream)
+                                {
+                                    string data = sr.ReadLine();
+                                    if (data != null)
+                                    {
+                                        var grd = Grade.Restore(data, st.Number);
+                                        if (grd != null)
+                                        {
+                                            testGrades.Add(grd);
+                                        }
+                                    }
+
+
+                                }
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("학생정보 읽어오는중 에러발생 : " + ex);
+                    }
+
+                }
             }
         }
 
@@ -261,7 +307,7 @@ namespace Week04Homework
                 return;
             }
             //학과를 참조하는 학생정보가 있다면 삭제불가능
-            if (students.Any(m => m.Value.Dept.Equals(target)))
+            if (students.Any(m => m.Dept.Equals(target)))
             {
                 MessageBox.Show("해당 학과는 참조되고 있으므로 삭제할 수 없습니다.");
                 return;
@@ -279,23 +325,6 @@ namespace Week04Homework
             try
             {
                 DeleteInfo(departments, DepartmentsFullFileName);
-                //using (FileStream fs = new FileStream(DepartmentsFullFileName, FileMode.Create))
-                //{
-                //    using (StreamWriter sw = new StreamWriter(fs))
-                //    {
-                //        foreach (var dept in departments)
-                //        {
-                //            if (dept != null)
-                //            {
-                //                sw.WriteLine(dept.Record);
-                //            }
-                //        }
-                //    }
-                //}
-            }
-            catch (NullReferenceException ex)
-            {
-                Console.WriteLine("null참조 발생 : " + ex.Message);
             }
             catch (Exception ex)
             {
@@ -309,29 +338,29 @@ namespace Week04Homework
         }
 
         //수업시간에 추가
-        private void DeleteInfo(List<Department> depts, string fileName)
-        {
-            try
-            {
-                using (FileStream fs = new FileStream(fileName, FileMode.Create))
-                {
-                    using (StreamWriter sw = new StreamWriter(fs))
-                    {
-                        foreach (var dept in departments)
-                        {
-                            if (dept != null)
-                            {
-                                sw.WriteLine(dept.Record);
-                            }
-                        }
-                    }
-                }
-            } catch (Exception ex)
-            {
-                throw ex;
-            }
+        //private void DeleteInfo(List<Department> depts, string fileName)
+        //{
+        //    try
+        //    {
+        //        using (FileStream fs = new FileStream(fileName, FileMode.Create))
+        //        {
+        //            using (StreamWriter sw = new StreamWriter(fs))
+        //            {
+        //                foreach (var dept in departments)
+        //                {
+        //                    if (dept != null)
+        //                    {
+        //                        sw.WriteLine(dept.Record);
+        //                    }
+        //                }
+        //            }
+        //        }
+        //    } catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
             
-        }
+        //}
 
         private void tabMain_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -441,13 +470,6 @@ namespace Week04Homework
             professors.Add(professor);
             lbxProfessor.Items.Add(professor);
             SaveInfo(professor, ProfessorsFullFileName);
-            //try
-            //{
-            //    using (StreamWriter sw = new StreamWriter(ProfessorsFullFileName, append:true))
-            //    {
-            //        sw.WriteLine(professor.Record);
-            //    }
-            //} catch (Exception ex) { Console.WriteLine("교수 정보 등록중 에러발생 : " + ex); }
             
         }
 
@@ -464,7 +486,7 @@ namespace Week04Homework
             if (target == null) { return; }
 
             //교수를 참조하는 학생정보가 있다면 삭제불가능
-            if (students.Any(m => m.Value.Advisor.Equals(target)))
+            if (students.Any(m => m.Advisor.Equals(target)))
             {
                 MessageBox.Show("해당 교수는 참조되고 있으므로 삭제할 수 없습니다.");
                 return;
@@ -483,22 +505,11 @@ namespace Week04Homework
             lbxProfessor.SelectedIndex = -1;
 
             DeleteInfo(professors, ProfessorsFullFileName);
-            //try
-            //{
-            //    using (StreamWriter sw = new StreamWriter(ProfessorsFullFileName, append: false))
-            //    {
-            //        foreach (var i in professors)
-            //        {
-            //            sw.WriteLine(i.Record);
-            //        }
-
-            //    }
-            //} catch (Exception ex) { Console.WriteLine("교수정보 삭제중 에러발생 : " + ex); }
-
-
+           
         }
 
-        private void DeleteInfo(List<Professor> professors, string fileName)
+        
+        private void DeleteInfo<T>(List<T> professors, string fileName)
         {
             try
             {
@@ -506,15 +517,16 @@ namespace Week04Homework
                 {
                     foreach (var i in professors)
                     {
-                        if (i != null)
+                        IFile file = (IFile)i;
+                        if (file != null)
                         {
-                            sw.WriteLine(i.Record);
+                            sw.WriteLine(file.Record);
                         }
                     }
 
                 }
             }
-            catch (Exception ex) { Console.WriteLine("교수정보 삭제중 에러발생 : " + ex); }
+            catch (Exception ex) { Console.WriteLine("교수/학과 정보 삭제중 에러발생 : " + ex); }
         }
 
         private void cmbDepartment_SelectedIndexChanged(object sender, EventArgs e)
@@ -592,26 +604,8 @@ namespace Week04Homework
                 tbxName.Focus();
                 return;
             }
-
-            //for, 성능 떨어짐
-            //for (int i = 0; i < students.Count; i++) {
-            //    var pair = students.ElementAt(i);
-            //    if (pair.Key == number) {
-            //        tbxNumber.Focus();
-            //        return;
-            //    }
-            //}
-
-            ////foreach
-            //foreach (var pair in students) {
-            //    if (pair.Key == number) {
-            //        tbxNumber.Focus();
-            //        return;
-            //    }
-            //}
-
-            //실제 많이 사용하는 방법1
-            if (true == students.ContainsKey(number)) {
+            //동일 학번이 존재하는지 체크
+            if (students.Any(m => m != null && m.Number == number)){
                 tbxNumber.Focus();
                 return;
             }
@@ -699,7 +693,7 @@ namespace Week04Homework
             student.Address = tbxAddress.Text.Trim();
             student.Contact = tbxContact.Text.Trim();
 
-            students[number] = student;
+            students.Add(student);
             lbxDictionary.Items.Add(student);
 
             SaveInfo(student, studentsFullFileName);
@@ -794,6 +788,8 @@ namespace Week04Homework
             //모든 사항의 확인 및 수정이 끝나면
             //수정완료 메세지를 띄운 후
             //화면을 초기화 상태로 만든다.
+            
+            
 
             selectedStudent.Name = tbxName.Text.Trim();
             selectedStudent.setBirthInfo(birthYear, birthMonth, birthDay);
@@ -815,12 +811,16 @@ namespace Week04Homework
             selectedStudent.RegStatus = (REG_STATUS)cmbRegStatus.SelectedIndex;
             selectedStudent.Address = tbxAddress.Text.Trim();
             selectedStudent.Contact = tbxContact.Text.Trim();
-            
+
+            //학생이름 변경시 Dictionary에 변경하기
+            lbxDictionary.Items[lbxDictionary.SelectedIndex] = selectedStudent;
+
             lbxDictionary.SelectedIndex = -1;
+            
             try
             {
                 var lines = File.ReadAllLines(studentsFullFileName).ToList();
-                for (int i =0; i < lines.Count;++i)
+                for (int i = 0; i < lines.Count; ++i)
                 {
                     if (lines[i].StartsWith(selectedStudent.Number))
                     {
@@ -953,15 +953,12 @@ namespace Week04Homework
 
         private Student SearchStudentByNumber(string number)
         {
-            if (students.ContainsKey(number)) {
-                return students[number];
-            } else {
-                return null;
-            }
+            return students.FirstOrDefault(m => m != null && m.Number == number);
         }
 
         private void btnTestRegScore_Click(object sender, EventArgs e)
         {
+            bool isUpdate = true;
             //추가코드
             lblTestTotalCount.Text = "";
             lblTestAverage.Text = "";
@@ -983,7 +980,9 @@ namespace Week04Homework
             var grade
                 = SearchGradeByNumber(selectedStudent.Number);
 
+            //학점 정보를 처음 저장한다면
             if (grade == null) {
+                isUpdate = false;
                 grade = new Grade(selectedStudent.Number);
             }
 
@@ -995,15 +994,18 @@ namespace Week04Homework
                     break;
                 }
 
+                var input = tbxTestScores[i].Text.Replace(',', '.');
                 if (false == double.TryParse(
-                    tbxTestScores[i].Text, out temp)) {
+                    input, out temp)) {
                     tbxTestScores[i].Focus();
                     return;
                 }
                 grade.Add(temp);
             }
-
-            testGrades.Add(grade);
+            if (false == isUpdate) //처음 저장하는 학점일때만.
+            {
+                testGrades.Add(grade);
+            }
 
             //총 과목수 출력
             lblTestTotalCount.Text
@@ -1016,6 +1018,15 @@ namespace Week04Homework
             //double average = sum / grade.Scores.Count;
             double average = grade.Average();
             lblTestAverage.Text = average.ToString("F1");
+            
+            //파일에 저장함. 
+            if (isUpdate) //성적을 업데이트한다..
+            {
+                SaveInfo(grade, gradesFullFileName(grade.StudentNumber));
+            } else //성적을 처음 입력한다..
+            {
+                SaveInfo(grade, gradesFullFileName(grade.StudentNumber));
+            }
 
         }
 
@@ -1024,44 +1035,17 @@ namespace Week04Homework
             
             try
             {
-                using (StreamWriter sw = new StreamWriter(fileName, append: true))
+                using (StreamWriter sw = new StreamWriter(fileName, append: false))
                 {
                     sw.WriteLine(obj.Record);
                 }
             }
-            catch (Exception ex) { Console.WriteLine("교수/학생/학과 정보 등록중 에러발생 : " + ex); }
+            catch (Exception ex) { Console.WriteLine("교수/학생/학과/학점 정보 등록중 에러발생 : " + ex); }
         }
 
-        //private void SaveInfo(Student student, string fileName)
-        //{
-        //    try
-        //    {
-        //        using (StreamWriter sw = new StreamWriter(fileName, append: true))
-        //        {
-        //            sw.WriteLine(student.Record);
-        //        }
-        //    }
-        //    catch (Exception ex) { Console.WriteLine("학생정보 등록중 에러발생 : " + ex); }
-        //}
+        
 
-        //private void SaveInfo(Department dept, string fileName)
-        //{
-        //    try
-        //    {
-        //        using (FileStream fs = new FileStream(fileName, FileMode.Append))
-        //        {
-        //            using (StreamWriter sw = new StreamWriter(fs))
-        //            {
-        //                sw.WriteLine(dept.Record);
-        //            }
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.WriteLine("학과정보 저장시 에러발생 : " + ex);
-        //    }
-
-        //}
+        
     }
 }
 

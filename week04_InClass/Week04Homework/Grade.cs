@@ -34,7 +34,7 @@ namespace Week04Homework
 #else
 namespace Week04Homework
 {
-    class Grade
+    class Grade : IFile
     {
         public const int MAX_GRADE_COUNT = 9;
 
@@ -44,12 +44,43 @@ namespace Week04Homework
             get { return this._studentNumber; }
         }
 
+        public string Record {
+            get {
+                StringBuilder builder = new StringBuilder();
+                for (int i = 0; i < _scores.Count; i++)
+                {
+                    builder.Append(_scores[i] + "|");
+                }
+                return $"{builder}"; 
+            }
+        }
+
         public Grade(string sNumber)
         {
             this._studentNumber = sNumber;
         }
 
         private List<double> _scores = new List<double>();
+
+        public static Grade Restore(string data, string sNumber)
+        {
+            Grade g1 = null;
+            try
+            {
+                string[] temp = data.Trim().Split(new char[] { '|' }, StringSplitOptions.RemoveEmptyEntries);
+                
+                if (temp.Length > MAX_GRADE_COUNT) { return null; }
+
+                g1 = new Grade(sNumber);
+                for (int i = 0; i < temp.Length; ++i) {
+                    g1._scores.Add(double.Parse(temp[i]));
+                }
+            } catch (Exception ex)
+            {
+                Console.WriteLine("학점 가져오는중 에러 발생 : " + ex);
+            }
+            return g1;
+        }
 
         public int Count()
         {
