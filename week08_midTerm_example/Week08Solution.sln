@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LabraryBook", "..\LabraryBo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalExpenseTracker", "..\PersonalExpenseTracker\PersonalExpenseTracker\PersonalExpenseTracker.csproj", "{EC278524-9605-4DB5-90F9-E4D8C7230858}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuizCreationTool", "..\QuizCreationTool\QuizCreationTool\QuizCreationTool.csproj", "{AA0772C3-9EF4-403C-B883-DBC963CB93F7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuizCreationTool", "QuizCreationTool\QuizCreationTool.csproj", "{AA0772C3-9EF4-403C-B883-DBC963CB93F7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
