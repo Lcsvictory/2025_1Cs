@@ -10,11 +10,11 @@ namespace Proj_FinancialLedger_202001098
     {
         private int _year;
         private int _targetAmount;
-
+        
         public int Year { get { return _year; } }
         public int TargetAmount { get { return _targetAmount; } }
         public bool IsBlack { 
-            get {   
+            get {  
                 if (TargetAmount == 0 && TotalIncome > TotalExpenditure){ return true; }
 
                 if ((TotalIncome - TotalExpenditure) >= TargetAmount){ return true; }

@@ -9,9 +9,9 @@ namespace Proj_FinancialLedger_202001098
     abstract class Financial
     {
         //수입정보
-        protected Dictionary<DateTime, Info> _incomes;
+        protected Dictionary<DateTime, Info> _incomes = new Dictionary<DateTime, Info>();
         //지출정보
-        protected Dictionary<DateTime, Info> _expenditures;
+        protected Dictionary<DateTime, Info> _expenditures = new Dictionary<DateTime, Info>();
 
         //전체 수입액
         public int TotalIncome { 
