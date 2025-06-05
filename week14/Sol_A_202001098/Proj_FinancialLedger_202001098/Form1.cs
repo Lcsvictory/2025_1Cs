@@ -13,15 +13,12 @@ namespace Proj_FinancialLedger_202001098
 {
     public partial class Form1: Form
     {
-        FileStream currentFile;
         FinancialLedger currentFL;
-        StreamWriter sw;
+        private const string _yearFormat = "yyyyMMdd hhmmssfff";
         public Form1()
         {
             InitializeComponent();
-            currentFile = null;
             currentFL = null;
-            sw = null;
 
         }
         private const string BASE_FOLDER_DIR = "..\\..\\financialLedgers\\";
@@ -121,17 +118,6 @@ namespace Proj_FinancialLedger_202001098
 
             tbxFastContent.Text = string.Empty;
             tbxFastMoney.Text = "0";
-
-            if (currentFile != null)
-            {
-                currentFile.Close();
-                currentFile = null;
-            }
-            if (sw != null)
-            {
-                sw.Close();
-                sw = null;
-            }
             
             BlockingInput(true);
         }
@@ -158,7 +144,7 @@ namespace Proj_FinancialLedger_202001098
                 } catch (Exception ex ) { Console.WriteLine(ex); }
             }
 
-            currentFile = new FileStream(returnPath(year.ToString()), FileMode.Append);
+            //currentFile = new FileStream(returnPath(year.ToString()), FileMode.Append);
             BlockingInput(year, false);
         }
 
@@ -207,14 +193,24 @@ namespace Proj_FinancialLedger_202001098
             DateTime dt = new DateTime(year, month, day);
             currentFL.RegIncome(dt, content, money);
 
-            if (currentFile != null)
+            try
             {
-                sw = new StreamWriter(currentFile);
-                sw.WriteLine($"{dt.ToString()},{content},{money}");
-                sw.Close();
+                using (FileStream fs = new FileStream(returnPath(year.ToString()), FileMode.Append))
+                {
+                    using (StreamWriter sw = new StreamWriter(fs))
+                    {
+                        sw.WriteLine($"{dt.ToString(_yearFormat)},{content},{money}");
+                    }
+                }
             }
-            
+            catch (Exception ex) { Console.WriteLine(ex); }
 
+            DisplayInfo();
+        }
+
+        private void DisplayInfo()
+        {
+            throw new NotImplementedException();
         }
     }
 }
