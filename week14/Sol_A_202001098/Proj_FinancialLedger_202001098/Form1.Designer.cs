@@ -199,6 +199,7 @@
             this.btnRestore.TabIndex = 4;
             this.btnRestore.Text = "불러오기";
             this.btnRestore.UseVisualStyleBackColor = false;
+            this.btnRestore.Click += new System.EventHandler(this.btnRestore_Click);
             // 
             // btnReset
             // 
@@ -595,6 +596,7 @@
             this.btnRegExpenditure.TabIndex = 16;
             this.btnRegExpenditure.Text = "     지출 등록";
             this.btnRegExpenditure.UseVisualStyleBackColor = false;
+            this.btnRegExpenditure.Click += new System.EventHandler(this.btnRegExpenditure_Click);
             // 
             // label14
             // 
@@ -737,6 +739,7 @@
             this.btnFastRegExpenditure.TabIndex = 20;
             this.btnFastRegExpenditure.Text = "    지출";
             this.btnFastRegExpenditure.UseVisualStyleBackColor = false;
+            this.btnFastRegExpenditure.Click += new System.EventHandler(this.btnFastRegExpenditure_Click);
             // 
             // btnFastRegIncome
             // 
@@ -749,6 +752,7 @@
             this.btnFastRegIncome.TabIndex = 19;
             this.btnFastRegIncome.Text = "    수입";
             this.btnFastRegIncome.UseVisualStyleBackColor = false;
+            this.btnFastRegIncome.Click += new System.EventHandler(this.btnFastRegIncome_Click);
             // 
             // tbxFastMoney
             // 
@@ -817,7 +821,7 @@
             // 
             this.lbxExpenditure.FormattingEnabled = true;
             this.lbxExpenditure.ItemHeight = 21;
-            this.lbxExpenditure.Location = new System.Drawing.Point(11, 9);
+            this.lbxExpenditure.Location = new System.Drawing.Point(7, 7);
             this.lbxExpenditure.Name = "lbxExpenditure";
             this.lbxExpenditure.Size = new System.Drawing.Size(1256, 256);
             this.lbxExpenditure.TabIndex = 1;
@@ -839,7 +843,7 @@
             this.lbxAll.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lbxAll.FormattingEnabled = true;
             this.lbxAll.ItemHeight = 21;
-            this.lbxAll.Location = new System.Drawing.Point(11, 9);
+            this.lbxAll.Location = new System.Drawing.Point(7, 7);
             this.lbxAll.Name = "lbxAll";
             this.lbxAll.Size = new System.Drawing.Size(1256, 256);
             this.lbxAll.TabIndex = 1;
