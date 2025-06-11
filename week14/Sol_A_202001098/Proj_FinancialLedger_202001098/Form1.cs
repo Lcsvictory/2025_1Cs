@@ -187,7 +187,7 @@ namespace Proj_FinancialLedger_202001098
             if (false == int.TryParse(tbxTargetAmount.Text, out targetAmount)) { tbxTargetAmount.Focus(); return; }
 
             if (InvalidYearCheck(year)) { return; }
-
+ 
             FinancialLedger fl = new FinancialLedger(year, targetAmount);
             currentFL = fl;
 
@@ -213,6 +213,7 @@ namespace Proj_FinancialLedger_202001098
             }
 
 
+            MakeDefault();
             BlockingInput(year, false);
         }
 
