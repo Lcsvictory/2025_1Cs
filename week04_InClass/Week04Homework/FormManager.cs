@@ -98,39 +98,59 @@ namespace Week04Homework
             OpenInfo(ref testGrades);
         }
 
+        private void ReadLines<T>(string filePath, IList<T> targetList, Func<string, T> restoreFunc)
+            where T : class
+        {
+            if (!File.Exists(filePath))
+                return;
+
+            using (var sr = new StreamReader(filePath))
+            {
+                string line;
+                while ((line = sr.ReadLine()) != null)
+                {
+                    var item = restoreFunc(line);
+                    if (item != null)
+                        targetList.Add(item);
+                }
+            }
+        }
+
         private void OpenInfo(ref List<Professor> professors, string fileName)
         {
-            if (File.Exists(fileName))
-            {
-                try
-                {
-                    using (FileStream fs = new FileStream(fileName, FileMode.Open))
-                    {
-                        using (StreamReader sr = new StreamReader(fs))
-                        {
-                            while (!sr.EndOfStream)
-                            {
-                                string data = sr.ReadLine();
-                                if (data != null)
-                                {
-                                    var prof = Professor.Restore(data, departments);
-                                    if (prof != null)
-                                    {
-                                        professors.Add(prof);
-                                    }
-                                }
+            ReadLines(fileName, professors, record => Professor.Restore(record, departments));
+
+            //if (File.Exists(fileName))
+            //{
+            //    try
+            //    {
+            //        using (FileStream fs = new FileStream(fileName, FileMode.Open))
+            //        {
+            //            using (StreamReader sr = new StreamReader(fs))
+            //            {
+            //                while (!sr.EndOfStream)
+            //                {
+            //                    string data = sr.ReadLine();
+            //                    if (data != null)
+            //                    {
+            //                        var prof = Professor.Restore(data, departments);
+            //                        if (prof != null)
+            //                        {
+            //                            professors.Add(prof);
+            //                        }
+            //                    }
 
 
-                            }
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("교수정보 읽어오는중 에러발생 : " + ex);
-                }
+            //                }
+            //            }
+            //        }
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        Console.WriteLine("교수정보 읽어오는중 에러발생 : " + ex);
+            //    }
 
-            }
+            //}
         }
 
         private void OpenInfo(ref List<Department> departments, string fileName)
